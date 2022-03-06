@@ -1,0 +1,23 @@
+.profile__add {
+    background-image: url(../../../Images/Vector-1.svg);
+    background-color: unset;
+    background-repeat: no-repeat;
+    background-position: center;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid #fff;
+    border-radius: 2px;
+    width: 150px;
+    height: 50px;
+}
+
+.profile__add:hover {
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 768px) {
+    .profile__add {
+        background-image: url(../../../Images/Vector-add-small.svg);
+        width: 282px;
+    }
+}
