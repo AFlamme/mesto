@@ -18,14 +18,14 @@
 
  /* Открытие popup */
  function openPopup() {
-     popup.classList.add('popup__opened');
+     popup.classList.add('popup_opened');
      nameInput.value = nameProfile.textContent;
      aboutInput.value = aboutProfile.textContent;
  }
 
  /* Закрытие popup */
  function closePopup() {
-     popup.classList.remove('popup__opened');
+     popup.classList.remove('popup_opened');
  }
 
  /* Редактирование */
