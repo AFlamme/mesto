@@ -28,3 +28,5 @@ Grid Layout вёрстка;
 
 * [Страничка](https://aflamme.github.io/mesto/index.html)
 
+Спасибо!
+
