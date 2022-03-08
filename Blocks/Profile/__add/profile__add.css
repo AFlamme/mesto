@@ -1,5 +1,5 @@
 .profile__add {
-    background-image: url(../../../../Images/Vector-add.svg);
+    background-image: url(../../../images/Vector-add.svg);
     background-color: unset;
     background-repeat: no-repeat;
     background-position: center;
@@ -17,7 +17,7 @@
 
 @media screen and (max-width: 768px) {
     .profile__add {
-        background-image: url(../../../../Images/Vector-add-small.svg);
+        background-image: url(../../../images/Vector-add-small.svg);
         width: 282px;
     }
 }
