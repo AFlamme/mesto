@@ -9,6 +9,8 @@
     border: 0;
     border-radius: 2px;
     outline: none;
+    padding: 0;
+    cursor: pointer;
 }
 
 .popup__button:hover {

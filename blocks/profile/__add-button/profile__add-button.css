@@ -1,4 +1,4 @@
-.profile__add {
+.profile__add-button {
     background-image: url(../../../images/Vector-add.svg);
     background-color: unset;
     background-repeat: no-repeat;
@@ -9,14 +9,15 @@
     border-radius: 2px;
     width: 150px;
     height: 50px;
+    cursor: pointer;
 }
 
-.profile__add:hover {
+.profile__add-button:hover {
     opacity: 0.6;
 }
 
 @media screen and (max-width: 768px) {
-    .profile__add {
+    .profile__add-button {
         background-image: url(../../../images/Vector-add-small.svg);
         width: 282px;
     }

@@ -7,9 +7,11 @@
     background-position: center;
     background-repeat: no-repeat;
     position: absolute;
-    top: -40px;
-    right: -40px;
+    top: -44px;
+    right: -44px;
     outline: none;
+    padding: 0;
+    cursor: pointer;
 }
 
 .popup__closed:hover {
@@ -21,7 +23,7 @@
         background-image: url(../../../Images/CloseIcon-1.svg);
         max-width: 26px;
         max-height: 26px;
-        top: -45px;
-        right: 6px;
+        top: -42px;
+        right: -3px;
     }
 }

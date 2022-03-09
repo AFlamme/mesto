@@ -1,7 +1,7 @@
  /* Поиск формы */
  let popup = document.querySelector('.popup');
  /* Кнопка редактирования */
- let editButton = document.querySelector('.profile__edit');
+ let editButton = document.querySelector('.profile__edit-button');
  /* Кнопка закрытия */
  let closeButton = document.querySelector('.popup__closed');
  /* Попап по форме */
@@ -15,12 +15,11 @@
  /* Значение 2 */
  let aboutInput = document.querySelector('#input__popup-about');
 
-
  /* Открытие popup */
  function openPopup() {
-     popup.classList.add('popup_opened');
      nameInput.value = nameProfile.textContent;
      aboutInput.value = aboutProfile.textContent;
+     popup.classList.add('popup_opened');
  }
 
  /* Закрытие popup */
@@ -35,6 +34,7 @@
      aboutProfile.textContent = aboutInput.value;
      closePopup();
  }
+
 
  form.addEventListener('submit', formSubmitHandler);
  /* Открытие */
