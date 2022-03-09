@@ -7,6 +7,7 @@
     background-position: center;
     outline: none;
     margin-bottom: 7px;
+    padding: 0;
     width: 24px;
     height: 24px;
     cursor: pointer;
@@ -20,6 +21,6 @@
     .profile__edit-button {
         width: 18px;
         height: 18px;
-        margin: 0;
+        margin-bottom: 0;
     }
 }
