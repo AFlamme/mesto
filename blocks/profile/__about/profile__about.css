@@ -5,12 +5,13 @@
     line-height: 22px;
     text-overflow: ellipsis;
     overflow: hidden;
+    white-space: nowrap;
     margin: 0;
 }
 
 @media all and (max-width: 768px) {
     .profile__about {
-        max-width: 282px;
+        width: 282px;
         font-size: 14px;
         line-height: 17px;
         text-align: center;

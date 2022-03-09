@@ -3,7 +3,7 @@
  /* Кнопка редактирования */
  let editButton = document.querySelector('.profile__edit-button');
  /* Кнопка закрытия */
- let closeButton = document.querySelector('.popup__closed');
+ let closeButton = document.querySelector('.popup__close-button');
  /* Попап по форме */
  let form = document.querySelector('.popup__form');
  /* Имя */
