@@ -5,6 +5,7 @@
     margin: 0 auto;
     margin-top: 40px;
     margin-bottom: 51px;
+    position: relative;
 }
 
 @media all and (max-width: 1024px) {

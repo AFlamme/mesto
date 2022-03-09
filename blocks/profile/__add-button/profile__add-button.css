@@ -18,6 +18,8 @@
 
 @media screen and (max-width: 768px) {
     .profile__add-button {
+        position: absolute;
+        bottom: 0;
         background-image: url(../../../images/Vector-add-small.svg);
         width: 282px;
     }

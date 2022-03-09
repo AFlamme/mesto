@@ -11,10 +11,10 @@
 
 @media all and (max-width: 768px) {
     .profile__about {
-        width: 282px;
+        max-width: 282px;
         font-size: 14px;
         line-height: 17px;
         text-align: center;
-        padding-bottom: 36px;
+        margin-bottom: 86px;
     }
 }
