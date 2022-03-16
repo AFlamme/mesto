@@ -31,53 +31,16 @@
             </section>
 
             <ul class="cards">
-                <li class="card">
-                    <img src="images/kirill-pershin-1088404-unsplash.jpg" alt="карачаевск" class="card__photo">
+                <template id="templatecard">
+                  <li class="card">
+                    <button type="button" class="card__delete"></button>
+                    <img class="card__photo" src="#" alt="#">
                     <div class="card__info">
-                        <h2 class="card__title">Карачаевск</h2>
-                        <button type="button" class="card__like card__like_active"></button>
+                      <h2 class="card__title"></h2>
+                      <button type="button" class="card__like"></button>
                     </div>
-                </li>
-
-                <li class="card">
-                    <img src="images/kirill-pershin-1404681-unsplash.jpg" alt="гора эльбрус" class="card__photo">
-                    <div class="card__info">
-                        <h2 class="card__title">Гора Эльбрус</h2>
-                        <button type="button" class="card__like card__like_active"></button>
-                    </div>
-                </li>
-
-                <li class="card">
-                    <img src="images/kirill-pershin-1556355-unsplash.jpg" alt="домбай" class="card__photo">
-                    <div class="card__info">
-                        <h2 class="card__title">Домбай</h2>
-                        <button type="button" class="card__like card__like_active"></button>
-                    </div>
-                </li>
-
-                <li class="card">
-                    <img src="images/kirill-pershin-1404681-unsplash.jpg" alt="гора эльбрус" class="card__photo">
-                    <div class="card__info">
-                        <h2 class="card__title">Гора Эльбрус</h2>
-                        <button type="button" class="card__like card__like_active"></button>
-                    </div>
-                </li>
-
-                <li class="card">
-                    <img src="images/kirill-pershin-1556355-unsplash.jpg" alt="домбай" class="card__photo">
-                    <div class="card__info">
-                        <h2 class="card__title">Домбай</h2>
-                        <button type="button" class="card__like card__like_active"></button>
-                    </div>
-                </li>
-
-                <li class="card">
-                    <img src="images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаево-Черкесия" class="card__photo">
-                    <div class="card__info">
-                        <h2 class="card__title">Карачаево-Черкесия</h2>
-                        <button type="button" class="card__like card__like_active"></button>
-                    </div>
-                </li>
+                  </li>
+                </template>
             </ul>
         </main>
 
@@ -89,12 +52,12 @@
     <div class="popup" id="popup-profile">
         <div class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form class="popup__form" name="popup__form" id="form-profile">
+            <form class="popup__form" name="popup__form" id="form-popup">
                 <input type="text" class="popup__input" name="input-name" id="input__popup-name">
                 <input type="text" class="popup__input" name="input-about" id="input__popup-about">
                 <button type="submit" class="popup__save-button" id="save-popup-card">Сохранить</button>
             </form>
-            <button type="button" class="popup__close-button" id="close-popup-card"></button>
+            <button type="button" class="popup__close-button" id="closePopupCard"></button>
         </div>
     </div>
     <div class="popup" id="popup-card">
@@ -105,7 +68,7 @@
                 <input type="text" class="popup__input" name="InputImgCard" id="input__popup-CardImg" value="" placeholder="Ссылка на картинку" required>
                 <button type="submit" class="popup__save-button" id="save-popup-card">Создать</button>
             </form>
-            <button type="button" class="popup__close-button" id="close-popup-card"></button>
+            <button type="button" class="popup__close-button" id="closePopupCard"></button>
         </div>
     </div>
 
@@ -115,7 +78,7 @@
                 <img class="popup__image" src="#" alt="Фотография">
                 <figcaption class="popup__figcaption"></figcaption>
             </figure>
-            <button type="button" class="popup__close-button" id="close-popup-card"></button>
+            <button type="button" class="popup__close-button" id="closePopupCard"></button>
         </div>
     </div>
     <script src="javascript/javascript.js"></script>

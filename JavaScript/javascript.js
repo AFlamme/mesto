@@ -3,7 +3,7 @@
     /* Кнопка редактирования */
     let editButton = document.querySelector('.profile__edit-button');
     /* Кнопка закрытия */
-    let closeButton = document.querySelector('#popup__close-button');
+    let closePopupCard = document.querySelector('#popup__close-button');
     /* Попап по форме */
     let form = document.querySelector('#form-popup');
     /* Имя */
@@ -52,12 +52,12 @@
     function openPopup() {
         nameInput.value = nameProfile.textContent;
         aboutInput.value = aboutProfile.textContent;
-        popup.classList.add('popup_opened');
+        popup.classList.add('.popup_opened');
     }
 
     /* Закрытие popup */
     function closePopup() {
-        popup.classList.remove('popup_opened');
+        popup.classList.remove('.popup_opened');
     }
 
     /* Редактирование */
@@ -67,9 +67,11 @@
         aboutProfile.textContent = aboutInput.value;
         closePopup(popupProfile);
     }
+    form.addEventListener('submit', formSubmitHandler);
+
 
     /* Открытие картинки на весь экран */
-    function popupAddBig(photo) {
+    function popupBig(photo) {
         photo.addEventListener('click', () => {
             popupImage.src = photo.src;
             popupFigcaption.textContent = photo.alt;
@@ -86,7 +88,7 @@
     function addlike(card) {
         let buttonLike = card.querySelector('.card__like');
         buttonLike.addEventListener('click', (evt) => {
-            evt.target.classList.toggle('card__like_active');
+            evt.target.classList.toggle('.card__like_active');
         });
     }
 
@@ -134,7 +136,7 @@
         cardPhoto.src = Card.link;
         cardPhoto.alt = Card.name;
 
-        popupAddBig(cardPhoto);
+        popupBig(cardPhoto);
         addlike(newCard);
         deleteCard(newCard);
 
@@ -146,11 +148,6 @@
             createCard(item)
         );
     });
-
-    /* Добавление на страницу */
-    function addNewCards(element) {
-        cardContainer.prepend(element)
-    }
 
     /* Добавление новой карточки на страницу */
     function addCardForSumbitHandler(evt) {
@@ -164,13 +161,18 @@
 
     formCard.addEventListener('submit', addCardForSumbitHandler);
 
-    form.addEventListener('submit', formSubmitHandler);
+    /* Добавление на страницу */
+    function addNewCards(element) {
+        cardContainer.prepend(element)
+    }
+
+
     /* Открытие */
     editButton.addEventListener('click', openPopup);
     /* Закрытие */
-    closeButton.addEventListener('click', closePopup);
+    closePopupCard.addEventListener('click', closePopup);
 
-    closeButton.addEventListener('click', function() {
+    closePopupCard.addEventListener('click', function() {
         closePopup(popupProfile)
     })
 
