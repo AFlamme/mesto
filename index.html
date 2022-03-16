@@ -86,15 +86,36 @@
         </footer>
     </div>
 
-    <div class="popup">
+    <div class="popup" id="popup-profile">
         <div class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form class="popup__form" name="popup__form">
+            <form class="popup__form" name="popup__form" id="form-profile">
                 <input type="text" class="popup__input" name="input-name" id="input__popup-name">
                 <input type="text" class="popup__input" name="input-about" id="input__popup-about">
-                <button type="submit" class="popup__save-button">Сохранить</button>
+                <button type="submit" class="popup__save-button" id="save-popup-card">Сохранить</button>
             </form>
-            <button type="button" class="popup__close-button"></button>
+            <button type="button" class="popup__close-button" id="close-popup-card"></button>
+        </div>
+    </div>
+    <div class="popup" id="popup-card">
+        <div class="popup__container">
+            <h2 class="popup__title">Новое место</h2>
+            <form class="popup__form" name="popup__form" id="form-card">
+                <input type="text" class="popup__input" name="InputNameCard" id="input__popup-CardName" value="" placeholder="Название Места" required>
+                <input type="text" class="popup__input" name="InputImgCard" id="input__popup-CardImg" value="" placeholder="Ссылка на картинку" required>
+                <button type="submit" class="popup__save-button" id="save-popup-card">Создать</button>
+            </form>
+            <button type="button" class="popup__close-button" id="close-popup-card"></button>
+        </div>
+    </div>
+
+    <div class="popup popup__opacity" id="add-big-button">
+        <div class="popup__content">
+            <figure class="popup__figure">
+                <img class="popup__image" src="#" alt="Фотография">
+                <figcaption class="popup__figcaption"></figcaption>
+            </figure>
+            <button type="button" class="popup__close-button" id="close-popup-card"></button>
         </div>
     </div>
     <script src="javascript/javascript.js"></script>
