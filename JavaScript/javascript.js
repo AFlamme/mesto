@@ -1,54 +1,54 @@
     // Поиск формы 
-    let popupProfile = document.querySelector('#popupProfile');
+    const popupProfile = document.querySelector('#popupProfile');
     // Кнопка редактирования 
-    let editButton = document.querySelector('.profile__edit-button');
+    const buttonEdit = document.querySelector('.profile__edit-button');
     // Кнопка закрытия 
-    let closeButton = document.querySelector('#closePopupProfile');
+    const buttonClose = document.querySelector('#closePopupProfile');
     // Попап по форме 
-    let form = document.querySelector('#form-popup');
+    const form = document.querySelector('#form-popup');
     // Имя 
-    let nameProfile = document.querySelector('.profile__name');
+    const nameProfile = document.querySelector('.profile__name');
     // О себе 
-    let aboutProfile = document.querySelector('.profile__about');
+    const aboutProfile = document.querySelector('.profile__about');
     // Значение 1. Строка с именем 
-    let nameInput = document.querySelector('#input__popup-name');
+    const nameInput = document.querySelector('#input__popup-name');
     // Значение 2. Строка о себе 
-    let aboutInput = document.querySelector('#input__popup-about');
+    const aboutInput = document.querySelector('#input__popup-about');
     // Кнопка сохранения 
-    let SaveButton = document.querySelector('#savePopupProfile');
+    const buttonSave = document.querySelector('#savePopupProfile');
 
     // Добавление карточек 
     // Форма 
-    let popupCard = document.querySelector('#popupCard');
+    const popupCard = document.querySelector('#popupCard');
     // Добавление 
-    let CardOpenButton = document.querySelector('.profile__add-button');
+    const cardOpenButton = document.querySelector('.profile__add-button');
     // Закрытие 
-    let CardCloseButton = document.querySelector('#closePopupCard');
+    const cardCloseButton = document.querySelector('#closePopupCard');
     // Сохранение 
-    let SavePopupCard = document.querySelector('#savePopupCard');
+    const cardPopupSave = document.querySelector('#savePopupCard');
     // Значение 1. Строка с именем карточки 
-    let inputCardAddName = document.querySelector('#input__popup-CardName');
+    const inputCardAddName = document.querySelector('#input__popup-CardName');
     // Значение 2. Строка с ссылкой на картинку 
-    let inputCardAddPhoto = document.querySelector('#input__popup-CardImg');
+    const inputCardAddPhoto = document.querySelector('#input__popup-CardImg');
     // Форма карточки 
-    let formCard = document.querySelector('#form-card');
+    const formCard = document.querySelector('#form-card');
 
     // Заготовки для карточки 
-    let cardTemplate = document.querySelector('#templateCard').content;
+    const cardTemplate = document.querySelector('#templateCard').content;
     // Контейнер с карточками
-    let cardContainer = document.querySelector('.cards');
+    const cardContainer = document.querySelector('.cards');
 
     // Открытие картинки 
     // Сама картинка 
-    let popupAddBig = document.querySelector('#addBigButton');
+    const popupAddBig = document.querySelector('#addBigButton');
     // Изображение в popup 
-    let popupImage = document.querySelector('.popup__image');
+    const popupImage = document.querySelector('.popup__image');
     // Подпись у изображения 
-    let popupFigcaption = document.querySelector('.popup__figcaption');
+    const popupFigcaption = document.querySelector('.popup__figcaption');
     // Закрытие
-    let closeAddBigPopup = document.querySelector('#closeAddPopupCard');
+    const popupCloseAddBig = document.querySelector('#closeAddPopupCard');
 
-    function popupBig(photo) {
+    function openPopupBig(photo) {
         photo.addEventListener('click', () => {
             popupImage.src = photo.src;
             popupFigcaption.textContent = photo.alt;
@@ -57,7 +57,7 @@
         });
     }
 
-    closeAddBigPopup.addEventListener('click', function() {
+    popupCloseAddBig.addEventListener('click', function() {
         closePopup(popupAddBig)
     })
 
@@ -71,21 +71,21 @@
         popup.classList.remove('popup_opened');
     }
 
-    editButton.addEventListener('click', function() {
+    buttonEdit.addEventListener('click', function() {
         nameInput.value = nameProfile.textContent;
         aboutInput.value = aboutProfile.textContent;
         openPopup(popupProfile)
     })
 
-    closeButton.addEventListener('click', function() {
+    buttonClose.addEventListener('click', function() {
         closePopup(popupProfile)
     })
 
-    CardOpenButton.addEventListener('click', function() {
+    cardOpenButton.addEventListener('click', function() {
         openPopup(popupCard)
     })
 
-    CardCloseButton.addEventListener('click', function() {
+    cardCloseButton.addEventListener('click', function() {
         closePopup(popupCard)
     })
 
@@ -101,7 +101,7 @@
 
     // Лайк
     function addLike(card) {
-        let buttonLike = card.querySelector('.card__like');
+        const buttonLike = card.querySelector('.card__like');
         buttonLike.addEventListener('click', (e) => {
             e.target.classList.toggle('card__like_active');
         });
@@ -151,7 +151,7 @@
         cardPhoto.src = Card.link;
         cardPhoto.alt = Card.name;
 
-        popupBig(cardPhoto);
+        openPopupBig(cardPhoto);
         addLike(newCard);
         deleteCard(newCard);
 
@@ -179,4 +179,5 @@
         inputCardAddPhoto.value = '';
         inputCardAddName.value = '';
     }
+
     formCard.addEventListener('submit', addCardForSumbitHandler);
