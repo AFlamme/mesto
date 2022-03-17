@@ -9,6 +9,7 @@
     outline: none;
     border: none;
     background-color: unset;
+    z-index: 1;
 }
 
 .card__delete:hover {
