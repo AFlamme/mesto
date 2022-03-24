@@ -1,0 +1,11 @@
+.popup__error {
+    visibility: hidden;
+    margin: 5px 0 0 36px;
+    height: 30px;
+}
+
+@media screen and (max-width:768px) {
+    .popup__error {
+        margin: 5px 0 0 22px;
+    }
+}

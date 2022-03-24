@@ -48,6 +48,21 @@
     // Закрытие
     const popupCloseAddBig = document.querySelector('#closeAddPopupCard');
 
+    // Закрытие на оверлэй
+    const closePopupOverlay = (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(evt.target);
+        }
+    }
+
+    // Закрытие на ESC
+    const closePopupEscape = (evt) => {
+        const openPopup = document.querySelector('.popup_opened');
+        if (evt.key === "Escape") {
+            closePopup(openPopup);
+        }
+    }
+
     function openPopupBig(photo) {
         photo.addEventListener('click', () => {
             popupImage.src = photo.src;
@@ -64,11 +79,15 @@
     // Открытие popup
     function openPopup(popup) {
         popup.classList.add('popup_opened');
+        popup.removeEventListener('mousedown', closePopupOverlay);
+        document.removeEventListener('keydown', closePopupEscape);
     }
 
     // Закрытие popup
     function closePopup(popup) {
         popup.classList.remove('popup_opened');
+        popup.removeEventListener('mousedown', closePopupOverlay);
+        document.removeEventListener('keydown', closePopupEscape);
     }
 
     buttonEdit.addEventListener('click', function() {
