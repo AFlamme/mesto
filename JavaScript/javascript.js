@@ -199,15 +199,9 @@
         closePopup(popupCard);
         inputCardAddPhoto.value = '';
         inputCardAddName.value = '';
-
-
+        cardPopupSave.setAttribute('disabled', true);
+        cardPopupSave.classList.add('popup__save-button_disabled');
     }
 
-    formCard.addEventListener('submit', function(evt) {
-        if (inputCardAddPhoto.value.length > 0 && inputCardAddName.value.length > 0) {
-            cardPopupSave.setAttribute('disabled', true);
-            cardPopupSave.classList.add('#savePopupCard');
-        }
-    });
 
     formCard.addEventListener('submit', addCardForSumbitHandler);
