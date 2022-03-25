@@ -5,7 +5,7 @@
     // Кнопка закрытия 
     const buttonClose = document.querySelector('#closePopupProfile');
     // Попап по форме 
-    const form = document.querySelector('#form-popup');
+    const formProfile = document.querySelector('#form-popup');
     // Имя 
     const nameProfile = document.querySelector('.profile__name');
     // О себе 
@@ -47,6 +47,33 @@
     const popupFigcaption = document.querySelector('.popup__figcaption');
     // Закрытие
     const popupCloseAddBig = document.querySelector('#closeAddPopupCard');
+
+    // Массив карточек
+    const initialCards = [{
+            name: 'Архыз',
+            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+        },
+        {
+            name: 'Челябинская область',
+            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+        },
+        {
+            name: 'Иваново',
+            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+        },
+        {
+            name: 'Камчатка',
+            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+        },
+        {
+            name: 'Холмогорский район',
+            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+        },
+        {
+            name: 'Байкал',
+            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+        }
+    ];
 
     // Закрытие на оверлэй
     const closePopupOverlay = (evt) => {
@@ -111,13 +138,13 @@
 
 
     // Редактирование 
-    function formSubmitHandler(evt) {
+    function submitFormHandler(evt) {
         evt.preventDefault();
         nameProfile.textContent = nameInput.value;
         aboutProfile.textContent = aboutInput.value;
         closePopup(popupProfile);
     }
-    form.addEventListener('submit', formSubmitHandler);
+    formProfile.addEventListener('submit', submitFormHandler);
 
     // Лайк
     function addLike(card) {
@@ -135,41 +162,15 @@
         });
     }
 
-    // Массив карточек
-    const initialCards = [{
-            name: 'Архыз',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-        },
-        {
-            name: 'Челябинская область',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-        },
-        {
-            name: 'Иваново',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-        },
-        {
-            name: 'Камчатка',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-        },
-        {
-            name: 'Холмогорский район',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-        },
-        {
-            name: 'Байкал',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-        }
-    ];
 
     // Добавление карточки
-    function createCard(Card) {
+    function createCard(card) {
         const newCard = cardTemplate.querySelector('.card').cloneNode(true);
         const cardTitle = newCard.querySelector('.card__title');
         const cardPhoto = newCard.querySelector('.card__photo');
-        cardTitle.textContent = Card.name;
-        cardPhoto.src = Card.link;
-        cardPhoto.alt = Card.name;
+        cardTitle.textContent = card.name;
+        cardPhoto.src = card.link;
+        cardPhoto.alt = card.name;
 
         openPopupBig(cardPhoto);
         addLike(newCard);
@@ -193,11 +194,20 @@
     // Добавление новой карточки на страницу
     function addCardForSumbitHandler(evt) {
         evt.preventDefault();
-        const Card = createCard({ name: inputCardAddName.value, link: inputCardAddPhoto.value });
-        addNewCards(Card);
+        const card = createCard({ name: inputCardAddName.value, link: inputCardAddPhoto.value });
+        addNewCards(card);
         closePopup(popupCard);
         inputCardAddPhoto.value = '';
         inputCardAddName.value = '';
+
+
     }
+
+    formCard.addEventListener('submit', function(evt) {
+        if (inputCardAddPhoto.value.length > 0 && inputCardAddName.value.length > 0) {
+            cardPopupSave.setAttribute('disabled', true);
+            cardPopupSave.classList.add('#savePopupCard');
+        }
+    });
 
     formCard.addEventListener('submit', addCardForSumbitHandler);
