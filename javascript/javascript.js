@@ -63,6 +63,20 @@
         }
     }
 
+    // Открытие popup
+    function openPopup(popup) {
+        popup.classList.add('popup_opened');
+        popup.addEventListener('mousedown', closePopupOverlay);
+        document.addEventListener('keydown', closePopupEscape);
+    }
+
+    // Закрытие popup
+    function closePopup(popup) {
+        popup.classList.remove('popup_opened');
+        popup.removeEventListener('mousedown', closePopupOverlay);
+        document.removeEventListener('keydown', closePopupEscape);
+    }
+
     function openPopupBig(photo) {
         photo.addEventListener('click', () => {
             popupImage.src = photo.src;
@@ -76,19 +90,6 @@
         closePopup(popupAddBig)
     })
 
-    // Открытие popup
-    function openPopup(popup) {
-        popup.classList.add('popup_opened');
-        popup.removeEventListener('mousedown', closePopupOverlay);
-        document.removeEventListener('keydown', closePopupEscape);
-    }
-
-    // Закрытие popup
-    function closePopup(popup) {
-        popup.classList.remove('popup_opened');
-        popup.removeEventListener('mousedown', closePopupOverlay);
-        document.removeEventListener('keydown', closePopupEscape);
-    }
 
     buttonEdit.addEventListener('click', function() {
         nameInput.value = nameProfile.textContent;
