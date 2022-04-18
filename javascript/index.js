@@ -100,7 +100,7 @@
     buttonEdit.addEventListener('click', function() {
         nameInput.value = nameProfile.textContent;
         aboutInput.value = aboutProfile.textContent;
-        editProfileFormValidator.deleteErrors();
+        editProfileFormValidate.deleteErrors();
         openPopup(popupProfile)
     })
 
@@ -112,7 +112,7 @@
     //открывает попап карточки
     cardOpenButton.addEventListener('click', function() {
         formAddCard.reset();
-        addCardFormValidator.deleteErrors();
+        addCardFormValidate.deleteErrors();
         openPopup(popupCard)
     })
 
@@ -132,6 +132,7 @@
         aboutProfile.textContent = aboutInput.value;
         closePopup(popupProfile);
     }
+
     formEditProfile.addEventListener('submit', submitEditProfileForm);
 
     function createCard(item) {
@@ -144,6 +145,7 @@
         const newcard = createCard(item);
         cardContainer.prepend(newcard);
     });
+
     // добавление на страницу новой карточки
     function addCardFormSubmitHandler(evt) {
         evt.preventDefault();
