@@ -1,5 +1,5 @@
     import Card from "./card.js"
-    import FormValidate from "./validate.js"
+    import FormValidator from "./validate.js"
 
     // Поиск формы 
     const popupProfile = document.querySelector('#popupProfile');
@@ -57,8 +57,8 @@
         inputError: '.popup__error'
     }
 
-    const addCardFormValidate = new FormValidate(validationConfig, formAddCard);
-    const editProfileFormValidate = new FormValidate(validationConfig, formEditProfile);
+    const addCardFormValidate = new FormValidator(validationConfig, formAddCard);
+    const editProfileFormValidate = new FormValidator(validationConfig, formEditProfile);
     editProfileFormValidate.enableValidation();
     addCardFormValidate.enableValidation();
 
@@ -100,7 +100,7 @@
     buttonEdit.addEventListener('click', function() {
         nameInput.value = nameProfile.textContent;
         aboutInput.value = aboutProfile.textContent;
-        editProfileFormValidate.deleteErrors();
+        editProfileFormValidator.deleteErrors();
         openPopup(popupProfile)
     })
 
@@ -112,7 +112,7 @@
     //открывает попап карточки
     cardOpenButton.addEventListener('click', function() {
         formAddCard.reset();
-        addCardFormValidate.deleteErrors();
+        addCardFormValidator.deleteErrors();
         openPopup(popupCard)
     })
 

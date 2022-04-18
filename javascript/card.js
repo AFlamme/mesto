@@ -8,12 +8,12 @@ const popupFigcaption = document.querySelector('.popup__figcaption');
 
 export default class Card {
     constructor(cardTemplate, cardData, openPopup, closePopup) {
-            this._cardTemplate = cardTemplate;
-            this._cardData = cardData;
-            this._openPopup = openPopup;
-            this._closePopup = closePopup;
-        }
-        //добавляем карточку
+        this._cardTemplate = cardTemplate;
+        this._cardData = cardData;
+        this._openPopup = openPopup;
+        this._closePopup = closePopup;
+    }
+
     _createCard() {
         const newCard = this._cardTemplate.querySelector('.card').cloneNode(true);
         const cardTitle = newCard.querySelector('.card__title');
@@ -25,7 +25,6 @@ export default class Card {
     }
 
     _setEventListeners() {
-        //на весь экран
         const photo = this._element.querySelector('.card__photo')
         photo.addEventListener('click', () => {
             popupImage.src = photo.src;
@@ -34,16 +33,11 @@ export default class Card {
             this._openPopup(popupAddBig);
         });
 
-
-
-        // кнопка лайка
         const buttonLike = this._element.querySelector('.card__like');
         buttonLike.addEventListener('click', (e) => {
             e.target.classList.toggle('card__like_active');
         });
 
-
-        //удаление
         const remove = this._element.querySelector('.card__delete');
         remove.addEventListener('click', (evt) => {
             evt.target.closest('.card').remove();
