@@ -51,7 +51,7 @@
         formSelector: '.popup__form',
         inputSelector: '.popup__input',
         submitButtonSelector: '.popup__save-button',
-        inactiveButtonClass: 'popup__button_disabled',
+        inactiveButtonClass: 'popup__save-button_disabled',
         inputErrorClass: 'popup__input_type_error',
         errorClass: 'popup__error_visible',
         inputError: '.popup__error'
@@ -71,8 +71,8 @@
 
     // Закрытие на ESC
     const closePopupEscape = (evt) => {
-        const openPopup = document.querySelector('.popup_opened');
         if (evt.key === "Escape") {
+            const openPopup = document.querySelector('.popup_opened');
             closePopup(openPopup);
         }
     }
@@ -154,6 +154,19 @@
         closePopup(popupCard);
         buttonCondition();
         formAddCard.reset()
+        if (inputCardAddPhoto.value.length > 0 && inputCardAddName.value.length > 0) {
+            cardPopupSave.setAttribute('disabled', true);
+            cardPopupSave.classList.add('#savePopupCard');
+        }
     }
+
+    formAddCard.addEventListener('submit', addCardFormSubmitHandler);
+
+    formAddCard.addEventListener('submit', function(evt) {
+        if (inputCardAddPhoto.value.length > 0 && inputCardAddName.value.length > 0) {
+            cardPopupSave.setAttribute('disabled', true);
+            cardPopupSave.classList.add('#savePopupCard');
+        }
+    });
 
     formAddCard.addEventListener('submit', addCardFormSubmitHandler);

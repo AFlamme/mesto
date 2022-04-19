@@ -22,14 +22,15 @@ export default class Card {
         cardPhoto.src = this._cardData.link;
         cardPhoto.alt = this._cardData.name;
         return newCard;
+
     }
 
     _setEventListeners() {
         const photo = this._element.querySelector('.card__photo')
         photo.addEventListener('click', () => {
-            popupImage.src = photo.src;
-            popupFigcaption.textContent = photo.alt;
-            popupImage.alt = photo.alt;
+            popupImage.src = this._cardData.link;
+            popupFigcaption.textContent = this._cardData.name;
+            popupImage.alt = this._cardData.name;
             this._openPopup(popupAddBig);
         });
 
@@ -39,9 +40,10 @@ export default class Card {
         });
 
         const remove = this._element.querySelector('.card__delete');
-        remove.addEventListener('click', (evt) => {
-            evt.target.closest('.card').remove();
+        remove.addEventListener('click', () => {
+            this._element.remove();
         });
+
     }
 
     getCard() {
@@ -49,4 +51,5 @@ export default class Card {
         this._setEventListeners();
         return this._element;
     }
+
 }

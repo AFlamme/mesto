@@ -58,8 +58,10 @@ export default class FormValidator {
         });
     };
 
+
     //удаление ошибок
     deleteErrors() {
+        this._inputlist = Array.from(this._formElement.querySelectorAll(this._validationConfig.inputSelector));
         const errorsSpan = this._formElement.querySelectorAll(this._validationConfig.inputSelector);
         const errorsInput = this._formElement.querySelectorAll(this._validationConfig.inputError);
         errorsSpan.forEach((input) => {
