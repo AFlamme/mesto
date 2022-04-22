@@ -68,14 +68,9 @@ export default class FormValidator {
 
     //удаление ошибок
     deleteErrors() {
-        const errorsSpan = this._formElement.querySelectorAll(this._validationConfig.inputSelector);
-        const errorsInput = this._formElement.querySelectorAll(this._validationConfig.inputError);
-        errorsSpan.forEach((input) => {
-            input.classList.remove(this._validationConfig.inputErrorClass);
-        });
-        errorsInput.forEach((error) => {
-            error.classList.remove(this._validationConfig.errorClass);
-        });
+        this._inputList.forEach((input) => {
+            this._hideInputError(input)
+        })
     }
 
     enableValidation() {

@@ -91,7 +91,6 @@
         document.removeEventListener('keydown', closePopupEscape);
     }
 
-
     // открывает попап профиля
     buttonEdit.addEventListener('click', function() {
         nameInput.value = nameProfile.textContent;
@@ -146,7 +145,8 @@
     function addCardFormSubmitHandler(evt) {
         evt.preventDefault();
         const card = createCard({ name: inputCardAddName.value, link: inputCardAddPhoto.value });
-        cardContainer.prepend(card)
+        cardContainer.prepend(card);
+        addCardFormValidate.disableButtonState();
         closePopup(popupCard);
         formAddCard.reset()
     }
