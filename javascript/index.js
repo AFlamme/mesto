@@ -91,11 +91,7 @@
         document.removeEventListener('keydown', closePopupEscape);
     }
 
-    // Cостояние кнопки
-    function buttonCondition() {
-        popupCardSaveButton.setAttribute('disabled', 'disabled');
-        popupCardSaveButton.classList.add(validationConfig.inactiveButtonClass);
-    }
+
     // открывает попап профиля
     buttonEdit.addEventListener('click', function() {
         nameInput.value = nameProfile.textContent;
@@ -152,21 +148,7 @@
         const card = createCard({ name: inputCardAddName.value, link: inputCardAddPhoto.value });
         cardContainer.prepend(card)
         closePopup(popupCard);
-        buttonCondition();
         formAddCard.reset()
-        if (inputCardAddPhoto.value.length > 0 && inputCardAddName.value.length > 0) {
-            cardPopupSave.setAttribute('disabled', true);
-            cardPopupSave.classList.add('#savePopupCard');
-        }
     }
-
-    formAddCard.addEventListener('submit', addCardFormSubmitHandler);
-
-    formAddCard.addEventListener('submit', function(evt) {
-        if (inputCardAddPhoto.value.length > 0 && inputCardAddName.value.length > 0) {
-            cardPopupSave.setAttribute('disabled', true);
-            cardPopupSave.classList.add('#savePopupCard');
-        }
-    });
 
     formAddCard.addEventListener('submit', addCardFormSubmitHandler);
