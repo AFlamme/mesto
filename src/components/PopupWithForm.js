@@ -3,7 +3,7 @@ export default class PopupWithForm extends Popup {
     constructor(popupSelector, callbackSubmitForm) {
         super(popupSelector);
         this._callbackSubmitForm = callbackSubmitForm;
-        this._form = this._popupSelector.querySelector('.popup__form');
+        this._form = this._popup.querySelector('.popup__form');
     }
 
     _getInputValues() {
@@ -25,7 +25,7 @@ export default class PopupWithForm extends Popup {
         });
     }
 
-    close = () => {
+    close() {
         super.close()
         this._form.reset()
     }

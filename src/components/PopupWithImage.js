@@ -6,8 +6,8 @@ export default class PopupWithImage extends Popup {
 
     open(card) {
         super.open()
-        const popupCard = this._popupSelector.querySelector('.popup__image');
-        const popupText = this._popupSelector.querySelector('.popup__figcaption');
+        const popupCard = this._popup.querySelector('.popup__image');
+        const popupText = this._popup.querySelector('.popup__figcaption');
         popupCard.src = card.src;
         popupCard.alt = card.alt;
         popupText.textContent = card.alt;

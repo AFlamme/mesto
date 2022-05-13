@@ -25,9 +25,9 @@
     import UserInfo from "../components/UserInfo.js";
 
     const userInfo = new UserInfo({ nameProfile, aboutProfile });
-    const imagePopup = new PopupWithImage(popupBig);
-    const popupAdd = new PopupWithForm(popupCard, addCardFormSubmit);
-    const popupEdit = new PopupWithForm(popupProfile, editProfileFormSubmit);
+    const imagePopup = new PopupWithImage('#popupbig');
+    const popupAdd = new PopupWithForm('#popupCard', addCardFormSubmit);
+    const popupEdit = new PopupWithForm('#popupProfile', editProfileFormSubmit);
 
     //Validation
     const addCardFormValidator = new FormValidator(validationConfig, formAddCard);
@@ -56,18 +56,14 @@
     //рендер на страницу новой карточки
     function addCardFormSubmit(data) {
         const cardElement = generateCard({ name: data['InputNameCard'], link: data['InputImgCard'] })
-        cardContainer.prepend(cardElement);
+        renderCards.addItem(cardElement);
         popupAdd.close();
-        popupCardSaveButton.classList.add(validationConfig.inactiveButtonClass);
-        popupCardSaveButton.setAttribute('disabled', 'disabled');
     }
 
     //открывает попап карточки
     openPopupCardButton.addEventListener('click', () => {
         formAddCard.reset();
         addCardFormValidator.enableValidation()
-        popupCardSaveButton.classList.add(validationConfig.inactiveButtonClass);
-        popupCardSaveButton.setAttribute('disabled', 'disabled');
         popupAdd.open();
     })
 
