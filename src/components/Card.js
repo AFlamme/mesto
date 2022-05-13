@@ -14,6 +14,8 @@ export default class Card {
     // Добавление
     getCard() {
         this._element = this._getTemplate();
+        this._like = this._element.querySelector('.card__like');
+        this._remove = this._element.querySelector('.card__delete');
         this._setEventListeners();
         const cardTitle = this._element.querySelector('.card__title');
         const cardPhoto = this._element.querySelector('.card__photo');
@@ -24,28 +26,21 @@ export default class Card {
     }
 
 
+    // скрытые слушатели
+    _toogleLike() {
+        this._like.classList.toggle('card__like_active');
+    };
+
+    _removeCard() {
+        this._element.remove();
+    };
+
+
     _setEventListeners() {
+        this._like.addEventListener('click', () => this._toogleLike());
+        this._remove.addEventListener('click', () => this._removeCard());
+
         const photo = this._element.querySelector('.card__photo')
-        photo.addEventListener('click', () => {
-            this._handleCardClick.open(photo);
-            this._handleCardClick.setEventListeners()
-
-        });
-
-
-
-        // Лайк
-        const buttonLike = this._element.querySelector('.card__like');
-
-        buttonLike.addEventListener('click', (e) => {
-            e.target.classList.toggle('card__like_active');
-        });
-
-
-        // Удаление 
-        const remove = this._element.querySelector('.card__delete');
-        remove.addEventListener('click', (evt) => {
-            evt.target.closest('.card').remove();
-        });
+        photo.addEventListener('click', () => this._handleCardClick.open(photo))
     }
 }

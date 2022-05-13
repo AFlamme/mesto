@@ -10,6 +10,6 @@ export default class PopupWithImage extends Popup {
         const popupText = this._popupSelector.querySelector('.popup__figcaption');
         popupCard.src = card.src;
         popupCard.alt = card.alt;
-        popupText.textContent = card.textContent;
+        popupText.textContent = card.alt;
     }
 }

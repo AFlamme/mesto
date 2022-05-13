@@ -25,7 +25,7 @@
     import UserInfo from "../components/UserInfo.js";
 
     const userInfo = new UserInfo({ nameProfile, aboutProfile });
-    const popupBigClass = new PopupWithImage(popupBig);
+    const imagePopup = new PopupWithImage(popupBig);
     const popupAdd = new PopupWithForm(popupCard, addCardFormSubmit);
     const popupEdit = new PopupWithForm(popupProfile, editProfileFormSubmit);
 
@@ -36,10 +36,22 @@
     addCardFormValidator.enableValidation();
 
     function generateCard(item) {
-        const newCard = new Card(cardsTemplate, item, popupBigClass);
+        const newCard = new Card(cardsTemplate, item, imagePopup);
         const cardElement = newCard.getCard();
         return cardElement;
     }
+
+    //Section 
+    const renderCards = new Section({
+            items: initialCards,
+            renderer: (item) => {
+                const cardElement = generateCard(item);
+                renderCards.addItem(cardElement)
+            }
+        },
+        cardContainer)
+
+    renderCards.renderItems()
 
     //рендер на страницу новой карточки
     function addCardFormSubmit(data) {
@@ -59,18 +71,6 @@
         popupAdd.open();
     })
 
-    //Section 
-    const renderCards = new Section({
-            items: initialCards,
-            renderer: (item) => {
-                const cardElement = generateCard(item);
-                renderCards.addItem(cardElement)
-            }
-        },
-        cardContainer)
-
-    renderCards.renderItems()
-
     //редактирование профиля
     function editProfileFormSubmit(data) {
         userInfo.setUserInfo(data);
@@ -87,4 +87,4 @@
 
     popupEdit.setEventListeners();
     popupAdd.setEventListeners();
-    popupBigClass.setEventListeners();
+    imagePopup.setEventListeners();
