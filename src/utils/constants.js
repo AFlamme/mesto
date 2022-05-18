@@ -1,30 +1,3 @@
-//массив карточек
-export const initialCards = [{
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-
 export const validationConfig = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
@@ -35,37 +8,33 @@ export const validationConfig = {
     inputError: '.popup__error'
 }
 
-// Поиск формы 
-export const popupProfile = document.querySelector('#popupProfile');
-// Кнопка редактирования 
-export const editButton = document.querySelector('.profile__edit-button');
+export const popupProfile = document.querySelector('#popupProfile'); // Поиск формы. 
+export const editButton = document.querySelector('.profile__edit-button'); // Кнопка редактирования. 
 
-
-// Имя 
-export const nameProfile = document.querySelector('.profile__name');
-// О себе 
-export const aboutProfile = document.querySelector('.profile__about');
-// Значение 1. Строка с именем 
-export const nameInput = document.querySelector('#input__popup-name');
-// Значение 2. Строка о себе 
-export const aboutInput = document.querySelector('#input__popup-about');
-// Попап по форме
-export const formEditProfile = document.querySelector('#form-profile')
+export const nameInput = document.querySelector('#input__popup-name'); // Значение 1. Строка с именем. 
+export const aboutInput = document.querySelector('#input__popup-about'); // Значение 2. Строка о себе. 
+export const formEditProfile = document.querySelector('#form-profile'); // Попап по форме.
 
 // Добавление карточек 
-// Форма 
-export const popupCard = document.querySelector('#popupCard');
-// Добавление 
-export const openPopupCardButton = document.querySelector('.profile__add-button');
-// Форма карточки 
-export const formAddCard = document.querySelector('#form-card');
+export const popupCard = document.querySelector('#popupCard'); // Форма. 
+export const openPopupCardButton = document.querySelector('.profile__add-button'); // Добавление.
+export const formAddCard = document.querySelector('#form-card'); // Форма карточки.
 
-// Заготовки для карточки 
-export const cardsTemplate = document.querySelector('#templateCard').content;
-// Контейнер с карточками
-export const cardContainer = document.querySelector('.cards');
+export const cardsTemplate = document.querySelector('#templateCard').content; // Заготовки для карточки. 
+export const cardContainer = document.querySelector('.cards'); // Контейнер с карточками.
 
-// Сама картинка 
-export const popupBig = document.querySelector('#popupbig');
-// Сохранение формы
-export const popupCardSaveButton = document.querySelector('#save-popup-card');
+export const popupBig = document.querySelector('#popupbig'); // Сама картинка. 
+export const popupCardSaveButton = document.querySelector('#save-popup-card'); // Сохранение формы.
+
+export const nameProfile = document.querySelector('.profile__name'); // Имя. 
+export const aboutProfile = document.querySelector('.profile__about'); // О себе. 
+export const avatarProfile = '.profile__avatar'; // Аватар.
+
+export const popupConfirm = document.querySelector('.popup_confirm'); // Форма подтверждения удаления.
+export const popupEditAvatar = document.querySelector('.profile__avatar') // Попап аватара.
+export const saveNewAvatar = document.querySelector('#form-avatar') // Форма аватара.
+export const popupAvatarSelector = document.querySelector('.popup_avatar');
+
+export const popupImg = document.querySelector('.popup__image'); // Картинка 
+export const popupImgText = document.querySelector('.popup__figcaption'); // Подпись к картинке.
+export const likeButton = document.querySelector('.card__like'); // Лайк.

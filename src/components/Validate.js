@@ -2,6 +2,7 @@ export default class FormValidator {
     constructor(validationConfig, formElement) {
         this._validationConfig = validationConfig;
         this._formElement = formElement;
+        this._buttonElement = this._formElement.querySelector(this._validationConfig.submitButtonSelector);
     }
 
 
@@ -56,7 +57,7 @@ export default class FormValidator {
         });
     };
 
-    // Удаление ошибок
+    // Удаление ошибок.
     deleteErrors() {
         const errorsSpan = this._formElement.querySelectorAll(this._validationConfig.inputSelector);
         const errorsInput = this._formElement.querySelectorAll(this._validationConfig.inputError);

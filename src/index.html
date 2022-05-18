@@ -16,13 +16,15 @@
         <main class="main">
             <section class="profile">
                 <div class="profile__image">
-                    <img src="<%=require('./images/image.jpg')%>" alt="аватар" class="profile__avatar">
+                    <div class="profile__avatar">
+                        <button type="button" class="profile__overlay"></button>
+                    </div>
                     <div>
                         <div class="profile__info">
-                            <h1 class="profile__name">Жак-Ив Кусто</h1>
+                            <h1 class="profile__name"></h1>
                             <button type="button" class="profile__edit-button"></button>
                         </div>
-                        <p class="profile__about">Исследователь океана</p>
+                        <p class="profile__about"></p>
                     </div>
                 </div>
                 <button type="button" class="profile__add-button"></button>
@@ -30,20 +32,23 @@
 
             <ul class="cards">
                 <template id="templateCard">
-                  <li class="card ">
+                  <li class="card">
                     <button type="button" class="card__delete"></button>
-                    <img class="card__photo" src="# " alt="# ">
+                    <img class="card__photo" src="# " alt="#">
                     <div class="card__info">
-                      <h2 class="card__title "></h2>
-                      <button type="button" class="card__like"></button>
+                      <h2 class="card__title"></h2>
+                      <div class="card__like-cont">
+                        <button type="button" class="card__like"></button>
+                        <span class="card__likes-container"></span>
+                      </div>
                     </div>
                   </li>
                 </template>
             </ul>
         </main>
 
-        <footer class="footer ">
-            <p class="footer__copyright ">&copy; Mesto Russia 2022</p>
+        <footer class="footer">
+            <p class="footer__copyright">&copy; Mesto Russia 2022</p>
         </footer>
     </div>
 
@@ -51,26 +56,27 @@
         <div class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
             <form class="popup__form" name="popup__form" id="form-profile">
-                <input type="text" class="popup__input" name="input-name" id="input__popup-name" value="" minlength="2 " maxlength="40 " placeholder="Имя пользователя" required>
+                <input type="text" id="input__popup-name" name="input-name" class="popup__input" value="" minlength="2" maxlength="40" placeholder="Имя пользователя" required>
                 <span id="input__popup-name-error" class="popup__error"></span>
-                <input type="text" class="popup__input" name="input-about" id="input__popup-about" value="" minlength="2 " maxlength="200 " placeholder="Описание" required>
+                <input type="text" class="popup__input" name="input-about" id="input__popup-about" value="" minlength="2" maxlength="200" placeholder="Описание" required>
                 <span id="input__popup-about-error" class="popup__error"></span>
                 <button type="submit" class="popup__save-button" id="savePopupProfile">Сохранить</button>
             </form>
             <button type="button" class="popup__close-button" id="closePopupProfile"></button>
         </div>
     </div>
+
     <div class="popup" id="popupCard">
         <div class="popup__container">
             <h2 class="popup__title">Новое место</h2>
             <form class="popup__form" name="popup__form" id="form-card">
-                <input type="text" class="popup__input" name="InputNameCard" id="input__popup-CardName" value="" minlength="2 " maxlength="30 " placeholder="Название Места" required>
+                <input type="text" id="input__popup-CardName" name="InputNameCard" class="popup__input" value="" minlength="2" maxlength="30" placeholder="Название Места" required>
                 <span id="input__popup-CardName-error" class="popup__error"></span>
-                <input type="url" class="popup__input" name="InputImgCard" id="input__popup-CardImg" value="" placeholder="Ссылка на картинку" required>
+                <input type="url" id="input__popup-CardImg" name="InputImgCard" class="popup__input" value="" placeholder="Ссылка на картинку" required>
                 <span id="input__popup-CardImg-error" class="popup__error"></span>
-                <button type="submit" class="popup__save-button" id="save-popup-card">Создать</button>
+                <button type="submit" id="save-popup-card" class="popup__save-button">Создать</button>
             </form>
-            <button type="button" class="popup__close-button" id="closePopupCard"></button>
+            <button type="button" id="closePopupCard" class="popup__close-button"></button>
         </div>
     </div>
 
@@ -83,6 +89,27 @@
             <button type="button" class="popup__close-button" id="closeAddPopupCard"></button>
         </div>
     </div>
+
+    <div class="popup popup_confirm">
+        <form id="form_remove" class="popup__container">
+            <h2 class="popup__title">Вы уверены?</h2>
+            <button type="submit" class="popup__button">Да</button>
+        </form>
+        <button type="button" class="popup__closed" id="close_remove"></button>
+    </div>
+
+    <div class="popup popup_avatar">
+        <div class="popup__container">
+            <h2 class="popup__title">Обновить аватар</h2>
+            <form id="form-avatar" class="popup__form">
+                <input type="url" id="input__popup-avatar" name="avatar" class="popup__input" value="" placeholder="Ссылка на аватар" required>
+                <span id="input__popup-avatar-error" class="popup__error"></span>
+                <button type="submit" id="newAvatar" class="popup__button">Сохранить</button>
+            </form>
+            <button type="button" id="closeAvatar" class="popup__closed"></button>
+        </div>
+    </div>
+
 </body>
 
 </html>

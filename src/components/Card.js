@@ -1,46 +1,70 @@
 export default class Card {
-    constructor(cardsTemplate, cardData, handleCardClick) {
+    constructor(cardsTemplate, { myId, name, link, likes, owner, _id }, handleCardClick,
+        removeCard, putLike, removeLike) {
         this._cardTemplate = cardsTemplate;
-        this._cardData = cardData;
+        this._myId = myId;
+        this._name = name;
+        this._link = link;
+        this._likes = likes;
+        this._ownerCardId = owner._id;
+        this._cardId = _id;
         this._handleCardClick = handleCardClick;
+        this._removeCard = removeCard;
+        this._putLike = putLike;
+        this._removeLike = removeLike;
     }
 
-    // Разметка
-    _getTemplate() {
+    // Добавление карточки.
+    _createCard() {
         const cardTemp = this._cardTemplate.querySelector('.card').cloneNode(true);
+        const cardTitle = cardTemp.querySelector('.card__title');
+        const cardPhoto = cardTemp.querySelector('.card__photo');
+        cardTitle.textContent = this._name;
+        cardPhoto.src = this._link;
+        cardPhoto.alt = this._name;
+
+        cardTemp.querySelector('.card__likes-container').textContent = this._likes.length // Счетчик поставленных лайков.
+            // Отображение активных лайков.
+        this._likes.forEach(like => {
+                if (like._id === this._myId) {
+                    cardTemp.querySelector('.card__like').classList.add('card__like_active')
+                }
+            })
+            // Корзина.
+        if (this._myId === this._ownerCardId) {
+            cardTemp.querySelector('.card__delete').classList.add('card__delete_from-me')
+        }
         return cardTemp;
     }
 
-    // Добавление
-    getCard() {
-        this._element = this._getTemplate();
-        this._like = this._element.querySelector('.card__like');
-        this._remove = this._element.querySelector('.card__delete');
-        this._setEventListeners();
-        const cardTitle = this._element.querySelector('.card__title');
-        const cardPhoto = this._element.querySelector('.card__photo');
-        cardTitle.textContent = this._cardData.name;
-        cardPhoto.src = this._cardData.link;
-        cardPhoto.alt = this._cardData.name;
-        return this._element;
-    }
-
-
-    // скрытые слушатели
-    _toogleLike() {
-        this._like.classList.toggle('card__like_active');
-    };
-
-    _removeCard() {
-        this._element.remove();
+    setLikesInfo(info) {
+        this._element.querySelector('.card__likes-container').textContent = info;
+        this._element.querySelector('.card__like').classList.toggle('card__like_active');
     };
 
 
     _setEventListeners() {
-        this._like.addEventListener('click', () => this._toogleLike());
-        this._remove.addEventListener('click', () => this._removeCard());
+        const buttonLike = this._element.querySelector('.card__like'); // Кнопка лайка. 
+        buttonLike.addEventListener('click', () => {
+            !buttonLike.classList.contains('card__like_active') ?
+                this._putLike(this._cardId, this) :
+                this._removeLike(this._cardId, this)
+        });
 
-        const photo = this._element.querySelector('.card__photo')
-        photo.addEventListener('click', () => this._handleCardClick.open(photo))
+        // На весь экран.
+        const cardPhoto = this._element.querySelector('.card__photo')
+        cardPhoto.addEventListener('click', () => this._handleCardClick(this._name, this._link));
+
+        // Удаление. 
+        const remove = this._element.querySelector('.card__delete');
+        remove.addEventListener('click', () => {
+            this._removeCard(this._cardId);
+        });
+    }
+
+    getCard() {
+        this._element = this._createCard();
+        this._setEventListeners();
+        return this._element
     }
 }

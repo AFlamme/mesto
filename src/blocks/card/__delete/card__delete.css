@@ -10,6 +10,7 @@
     border: none;
     background-color: unset;
     cursor: pointer;
+    visibility: hidden;
 }
 
 .card__delete:hover {
