@@ -1,17 +1,19 @@
+// Валидация формы, отображение и скрывание ошибок, отображение кнопки отправки
 export default class FormValidator {
     constructor(validationConfig, formElement) {
         this._validationConfig = validationConfig;
-        this._formElement = formElement;
+        this._formElement = formElement; // Форма
         this._buttonElement = this._formElement.querySelector(this._validationConfig.submitButtonSelector);
     }
 
-
+    // Проверка формы на наличие невалидных полей
     _hasInvalidInput(inputlist) {
         return inputlist.some((inputElement) => {
             return !inputElement.validity.valid
         });
     };
 
+    // Переключение состояния кнопки submit-а формы
     _toggleButtonState(inputlist, buttonElement) {
         if (this._hasInvalidInput(inputlist)) {
             buttonElement.classList.add(this._validationConfig.inactiveButtonClass);
@@ -22,6 +24,7 @@ export default class FormValidator {
         }
     };
 
+    // Ошибка у поля ввода
     _showInputError(inputElement) {
         const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
         inputElement.classList.add(this._validationConfig.inputErrorClass);
@@ -29,6 +32,7 @@ export default class FormValidator {
         errorElement.classList.add(this._validationConfig.errorClass);
     };
 
+    // Скрыть ошибку у поля ввода
     _hideInputError(inputElement) {
         const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
         inputElement.classList.remove(this._validationConfig.inputErrorClass);
@@ -36,6 +40,7 @@ export default class FormValidator {
         errorElement.textContent = "";
     };
 
+    // Проверка элемента на валидность. Скрывание или отображание ошибки
     _checkInput(inputElement) {
         if (inputElement.validity.valid) {
             this._hideInputError(inputElement);
@@ -44,6 +49,7 @@ export default class FormValidator {
         }
     }
 
+    // Установка слушателя событий
     _setInputListeners() {
         const inputlist = Array.from(this._formElement.querySelectorAll(this._validationConfig.inputSelector));
         const buttonElement = this._formElement.querySelector(this._validationConfig.submitButtonSelector);
@@ -57,7 +63,8 @@ export default class FormValidator {
         });
     };
 
-    // Удаление ошибок.
+
+    // Удаление ошибок
     deleteErrors() {
         const errorsSpan = this._formElement.querySelectorAll(this._validationConfig.inputSelector);
         const errorsInput = this._formElement.querySelectorAll(this._validationConfig.inputError);
@@ -69,6 +76,7 @@ export default class FormValidator {
         });
     }
 
+    // Включение валидации
     enableValidation() {
         this._setInputListeners();
     }

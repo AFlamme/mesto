@@ -1,20 +1,40 @@
+// Хранение, доступ и вывод инормации о пользователе
 export default class UserInfo {
-    constructor(nameProfile, aboutProfile, avatarProfile) {
-        this._userName = document.querySelector(nameProfile);
-        this._userAbout = document.querySelector(aboutProfile);
-        this._userAvatar = document.querySelector(avatarProfile);
+    constructor({ nameProfile, aboutProfile, avatarProfile }) {
+        this._userName = nameProfile;
+        this._userAbout = aboutProfile;
+        this._userAvatar = avatarProfile;
     }
 
+    // Сохранение информации о пользователе
+    getInfoUser({ name, about, avatar, cohort, _id }) {
+        this._name = name;
+        this._about = about;
+        this._avatar = avatar;
+        this._cohort = cohort;
+        this.id = _id;
+    }
+
+    // Возвращение имени пользователя и информации о нем
     getUserInfo() {
         return {
-            userName: this._userName.textContent,
-            userAbout: this._userAbout.textContent
+            userName: this._name,
+            userAbout: this._about
         }
     }
 
-    setUserInfo(item) {
-        this._userName.textContent = item.name;
-        this._userAbout.textContent = item.about;
-        this._userAvatar.style.backgroundImage = `url(${item.avatar})`;
+    // Вывод имени пользователя на страницу  
+    renderName() {
+        this._userName.textContent = this._name;
+    }
+
+    // Вывод информации о пользователе на страницу  
+    renderAbout() {
+        this._userAbout.textContent = this._about;
+    }
+
+    // Вывод аватара пользователя на страницу  
+    renderAvatar() {
+        this._userAvatar.src = this._avatar;
     }
 }

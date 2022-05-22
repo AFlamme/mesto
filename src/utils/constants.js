@@ -1,3 +1,5 @@
+// Элементы страницы и селекторы
+// Общее
 export const validationConfig = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
@@ -8,33 +10,43 @@ export const validationConfig = {
     inputError: '.popup__error'
 }
 
+// О пользователе
+const nameProfile = document.querySelector('.profile__name'); // Имя. 
+const aboutProfile = document.querySelector('.profile__about'); // О себе. 
+const avatarProfile = document.querySelector('.profile__avatar'); // Аватар.
+export const elementsProfile = {
+    name: nameProfile,
+    about: aboutProfile,
+    avatar: avatarProfile
+}
+
+// Изменение информации о пользователе
 export const popupProfile = document.querySelector('#popupProfile'); // Поиск формы. 
 export const editButton = document.querySelector('.profile__edit-button'); // Кнопка редактирования. 
-
 export const nameInput = document.querySelector('#input__popup-name'); // Значение 1. Строка с именем. 
 export const aboutInput = document.querySelector('#input__popup-about'); // Значение 2. Строка о себе. 
 export const formEditProfile = document.querySelector('#form-profile'); // Попап по форме.
+
+// Обновление аватара
+export const popupEditAvatar = document.querySelector('.profile__avatar') // Попап аватара.
+export const saveNewAvatar = document.querySelector('#form-avatar') // Форма аватара.
+export const popupAvatarSelector = document.querySelector('.popup_avatar');
 
 // Добавление карточек 
 export const popupCard = document.querySelector('#popupCard'); // Форма. 
 export const openPopupCardButton = document.querySelector('.profile__add-button'); // Добавление.
 export const formAddCard = document.querySelector('#form-card'); // Форма карточки.
 
+// Заготовка карточек
 export const cardsTemplate = document.querySelector('#templateCard').content; // Заготовки для карточки. 
 export const cardContainer = document.querySelector('.cards'); // Контейнер с карточками.
-
 export const popupBig = document.querySelector('#popupbig'); // Сама картинка. 
 export const popupCardSaveButton = document.querySelector('#save-popup-card'); // Сохранение формы.
 
-export const nameProfile = document.querySelector('.profile__name'); // Имя. 
-export const aboutProfile = document.querySelector('.profile__about'); // О себе. 
-export const avatarProfile = '.profile__avatar'; // Аватар.
-
+// Подтверждение
 export const popupConfirm = document.querySelector('.popup_confirm'); // Форма подтверждения удаления.
-export const popupEditAvatar = document.querySelector('.profile__avatar') // Попап аватара.
-export const saveNewAvatar = document.querySelector('#form-avatar') // Форма аватара.
-export const popupAvatarSelector = document.querySelector('.popup_avatar');
 
+// Просмотр картинки 
 export const popupImg = document.querySelector('.popup__image'); // Картинка 
 export const popupImgText = document.querySelector('.popup__figcaption'); // Подпись к картинке.
 export const likeButton = document.querySelector('.card__like'); // Лайк.

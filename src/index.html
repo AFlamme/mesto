@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
+    <meta name="description" content="Mesto: интерактивная страница, аналог Instagram">
+    <meta name="author" content="Андрей Гнеушев">
 </head>
 
 <body class="body">
@@ -16,29 +18,30 @@
         <main class="main">
             <section class="profile">
                 <div class="profile__image">
-                    <div class="profile__avatar">
-                        <button type="button" class="profile__overlay"></button>
+                    <img src="#" alt="Фотография пользователя" class="profile__avatar">
+                    <button type="button" class="profile__overlay"></button>
+                    <div class="profile__info">
+                        <h1 class="profile__name"></h1>
+                        <button type="button" class="profile__edit-button" alt="Редактировать профиль">
+                        </button>
                     </div>
-                    <div>
-                        <div class="profile__info">
-                            <h1 class="profile__name"></h1>
-                            <button type="button" class="profile__edit-button"></button>
-                        </div>
-                        <p class="profile__about"></p>
-                    </div>
+                    <p class="profile__about"></p>
                 </div>
-                <button type="button" class="profile__add-button"></button>
+                <button type="button" class="profile__add-button" alt="Добавить фотографию">
+                </button>
             </section>
 
             <ul class="cards">
                 <template id="templateCard">
                   <li class="card">
-                    <button type="button" class="card__delete"></button>
+                    <button type="button" class="card__delete" alt="Удалить карточку">
+                    </button>
                     <img class="card__photo" src="# " alt="#">
                     <div class="card__info">
                       <h2 class="card__title"></h2>
                       <div class="card__like-cont">
-                        <button type="button" class="card__like"></button>
+                        <button type="button" class="card__like" alt="Поставить лайк">
+                        </button>
                         <span class="card__likes-container"></span>
                       </div>
                     </div>
@@ -48,10 +51,11 @@
         </main>
 
         <footer class="footer">
-            <p class="footer__copyright">&copy; Mesto Russia 2022</p>
+            <p class="footer__copyright">&copy; Mesto Russia 2022 by Andrey AFlamme Gneushev</p>
         </footer>
     </div>
 
+    <!-- Редактирование профиля -->
     <div class="popup" id="popupProfile">
         <div class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
@@ -66,6 +70,7 @@
         </div>
     </div>
 
+    <!-- Добавить новое место -->
     <div class="popup" id="popupCard">
         <div class="popup__container">
             <h2 class="popup__title">Новое место</h2>
@@ -80,16 +85,19 @@
         </div>
     </div>
 
+    <!-- Увеличенная картинка -->
     <div class="popup popup_opacity" id="popupbig">
         <div class="popup__content">
             <figure class="popup__figure">
                 <img class="popup__image" src="# " alt="Фотография ">
                 <figcaption class="popup__figcaption"></figcaption>
             </figure>
-            <button type="button" class="popup__close-button" id="closeAddPopupCard"></button>
+            <button type="button" class="popup__close-button" id="closeAddPopupCard">
+            </button>
         </div>
     </div>
 
+    <!-- Подтвердить удаление -->
     <div class="popup popup_confirm">
         <form id="form_remove" class="popup__container">
             <h2 class="popup__title">Вы уверены?</h2>
@@ -98,6 +106,7 @@
         <button type="button" class="popup__closed" id="close_remove"></button>
     </div>
 
+    <!-- Обновление аватара -->
     <div class="popup popup_avatar">
         <div class="popup__container">
             <h2 class="popup__title">Обновить аватар</h2>
@@ -109,7 +118,6 @@
             <button type="button" id="closeAvatar" class="popup__closed"></button>
         </div>
     </div>
-
 </body>
 
 </html>
