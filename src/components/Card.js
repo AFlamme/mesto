@@ -1,3 +1,4 @@
+// Создание и функционирование карточки
 export default class Card {
     constructor({ name, link, likes, owner, createdAt, _id },
         templateSelector,
@@ -20,10 +21,7 @@ export default class Card {
         this._handleLikeCard = handleLikeCard;
     }
 
-    /**
-     * Получает шаблон создаваемой карточки из разметки
-     * @returns {object} Пустой элемент, созданный из шаблона
-     */
+    // Шаблон создаваемой карточки из разметки
     _getTemplate() {
         const cardTemplate = document
             .querySelector(this._templateSelector)
@@ -33,10 +31,7 @@ export default class Card {
         return cardTemplate;
     }
 
-    /**
-     * Создает заполненную по исходным данным карточку
-     * @returns {object} Карточка, готовая для вставки в разметку
-     */
+    // Заполнение карточки по исходным данным
     generateCard() {
         this._element = this._getTemplate();
 
@@ -58,26 +53,19 @@ export default class Card {
         return this._element;
     }
 
-    /**
-     * Устанавливает необходимые слушатели событий на элементы карточки
-     */
+    // Устанавка слушателей событий    
     _setEventlisteners() {
         // Лайк карточки
         this._element.querySelector('.card__like').addEventListener('click', (event) => this._likeCard(event));
-
         // Клик по картинке
         this._element.querySelector('.card__photo').addEventListener('click', () => this._handleCardClick(this._link, this._name));
-
         // Кнопка удаления карточки, при наличии
         if (this._element.querySelector('.card__delete')) {
             this._element.querySelector('.card__delete').addEventListener('click', () => this._handleDelete());
         }
     }
 
-    /**
-     * Обрабатывает лайк карточки
-     * @param {object} event - Событие клика
-     */
+    // Обработка лайка
     _likeCard(event) {
         event.target.disabled = true;
         this._handleLikeCard(this._id, this._isLiked)
@@ -86,29 +74,16 @@ export default class Card {
             })
     }
 
-    /**
-     * Обрабатывает нажатие на удаление карточки
-     */
+    // Удаление
     _handleDelete() {
         this._handleDeleteCard(this._id);
     }
 
-    /**
-     * Определяет, есть ли лайк пользователя на карточке
-     * @returns {boolean}
-     */
+    // Подтверждение лайка
     _checkIsLiked() {
         return this._likes.some(person => person._id === this._userId);
     }
 
-    /**
-     * Обрабатывает массив лайков карточки:
-     * - при наличии аргумента сохраняет новые лайки
-     * - записывает количество лайков в разметку
-     * - сохраняет и показывает в разметке текущее состяние лайка пользователя
-     *
-     * @param {Array} likes - Новые лайки карточки (необязательный параметр)
-     */
     setLikes(likes) {
         const likeCount = this._element.querySelector('.card__like-countainer');
         const likeButton = this._element.querySelector('.card__like');
@@ -127,9 +102,7 @@ export default class Card {
         }
     }
 
-    /**
-     * Удаляет карточку из раметки
-     */
+    // Удаляет карточки
     delete() {
         this._element.remove();
         this._element = null;

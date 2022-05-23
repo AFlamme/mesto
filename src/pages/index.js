@@ -31,8 +31,8 @@
     import Section from "../components/Section.js";
     import UserInfo from "../components/UserInfo.js";
 
-    const formValidators = {}; // хранение экземпляров валидаторов форм
-    const cards = {}; // хранение полученных карточек
+    const formValidators = {}; // Хранение экземпляров валидаторов форм
+    const cards = {}; // Хранение полученных карточек
 
     function validateForms(formSelectors) {
         const formElements = Array.from(document.querySelectorAll(formSelectors.formSelector));
