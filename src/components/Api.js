@@ -1,10 +1,8 @@
 export default class Api {
-    constructor({ baseUrl, headers }) {
-        this._baseUrl = baseUrl;
-        this._headers = headers;
+    constructor(confing) {
+        this._headers = confing.headers
     }
 
-    // Ошибка
     _checkError(res) {
         if (res.ok) {
             return res.json();
@@ -12,95 +10,95 @@ export default class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
     }
 
-    // Данные текущего пользователя
-    getUserInformation() {
-        return fetch(`${this._baseUrl}/users/me`, {
-                method: "GET",
-                headers: this._headers
-            })
-            .then(this._checkError);
-    }
-
-    // Новое имя и новая информация о пользователе
-    updateUserInformation(name, about) {
-        return fetch(`${this._baseUrl}/users/me`, {
-                method: 'PATCH',
-                headers: this._headers,
-                body: JSON.stringify({
-                    name: name,
-                    about: about
-                })
-            })
-            .then(this._checkError);
-    }
-
-    // Новый аватар
-    updateUserAvatar(link) {
-        return fetch(`${this._baseUrl}/users/me/avatar`, {
-                method: 'PATCH',
-                headers: this._headers,
-                body: JSON.stringify({
-                    avatar: link
-                })
-            })
-            .then(this._checkError);
-    }
-
-    // Отрисовка карточек
+    // Получение списка всех карточек
     getInitialCards() {
-        return fetch(`${this._baseUrl}/cards`, {
+        return fetch('https://mesto.nomoreparties.co/v1/cohort-41/cards', {
                 method: 'GET',
                 headers: this._headers
             })
             .then(this._checkError);
     }
 
-    // Добавление новой карточки
-    addNewCardToServer(name, link) {
-        return fetch(`${this._baseUrl}/cards`, {
-                method: 'POST',
-                headers: this._headers,
-                body: JSON.stringify({
-                    name: name,
-                    link: link
-                })
-            })
-            .then(this._checkError);
-    }
 
-    // Поставить лайк карточке
-    _setLike(cardId) {
-        return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-                method: 'PUT',
+    // Получение информации пользователя
+    getUserInfo() {
+        return fetch('https://mesto.nomoreparties.co/v1/cohort-41/users/me', {
+                method: 'GET',
                 headers: this._headers
             })
             .then(this._checkError);
     }
 
-    // Удаление лайка с карточки
-    _removeLike(cardId) {
-        return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-                method: "DELETE",
-                headers: this._headers
-            })
-            .then(this._checkError);
-    }
+    // Обновление аватара 
+    newAvatar(avatarUrl) {
+        const newConfing = {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                avatar: avatarUrl['avatar']
+            }),
 
-    // Переключение лайка
-    toggleLike(cardId, isLiked) {
-        if (isLiked) {
-            return this._removeike(cardId);
-        } else {
-            return this._setLike(cardId);
         }
+        return fetch(`https://mesto.nomoreparties.co/v1/cohort-41/users/me/avatar`, newConfing)
+            .then(this._checkError);
     }
 
     // Удаление карточки
-    deleteCard(cardId) {
-        return fetch(`${this._baseUrl}/cards/${cardId}`, {
-                method: "DELETE",
-                headers: this._headers
-            })
+    removeCard(cardId) {
+        const newConfing = {
+            headers: this._headers,
+            method: 'DELETE',
+        }
+        return fetch(`https://mesto.nomoreparties.co/v1/cohort-41/cards/${cardId}`, newConfing)
+            .then(this._checkError);
+    }
+
+    // Лайк 
+    putLike(cardId) {
+        const newConfing = {
+            headers: this._headers,
+            method: 'PUT',
+        }
+        return fetch(`https://mesto.nomoreparties.co/v1/cohort-41/cards/likes/${cardId}`, newConfing)
+            .then(this._checkError);
+    }
+
+    // Удалить лайк
+    removeLike(cardId) {
+        const newConfing = {
+            headers: this._headers,
+            method: 'DELETE',
+        }
+        return fetch(`https://mesto.nomoreparties.co/v1/cohort-41/cards/likes/${cardId}`, newConfing)
+            .then(this._checkError);
+    }
+
+    // Отправить информацию 
+    patchProfileInfo(data) {
+        const newConfing = {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                name: data['input-name'],
+                about: data['input-about']
+            }),
+        }
+        return fetch('https://mesto.nomoreparties.co/v1/cohort-41/users/me', newConfing)
+            .then(this._checkError);
+    }
+
+    // Отправить информацию о пользователе на сервер
+    patchCard(data) {
+        const newConfing = {
+            method: 'POST',
+            headers: this._headers,
+            body: JSON.stringify({
+                name: data['InputNameCard'],
+                link: data['InputImgCard']
+            }),
+
+        }
+        return fetch('https://mesto.nomoreparties.co/v1/cohort-41/cards', newConfing)
             .then(this._checkError);
     }
 }

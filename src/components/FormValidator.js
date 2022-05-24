@@ -2,7 +2,7 @@
 export default class FormValidator {
     constructor(validationConfig, formElement) {
         this._validationConfig = validationConfig;
-        this._formElement = formElement; // Форма
+        this._formElement = formElement;
         this._buttonElement = this._formElement.querySelector(this._validationConfig.submitButtonSelector);
     }
 
@@ -16,13 +16,17 @@ export default class FormValidator {
     // Переключение состояния кнопки submit-а формы
     _toggleButtonState(inputlist, buttonElement) {
         if (this._hasInvalidInput(inputlist)) {
-            buttonElement.classList.add(this._validationConfig.inactiveButtonClass);
-            buttonElement.setAttribute('disabled', true);
+            this.disableSubmitButton();
         } else {
             buttonElement.classList.remove(this._validationConfig.inactiveButtonClass);
             buttonElement.removeAttribute('disabled');
         }
     };
+
+    disableSubmitButton() {
+        this._buttonElement.classList.add(this._validationConfig.inactiveButtonClass);
+        this._buttonElement.setAttribute('disabled', 'disabled');
+    }
 
     // Ошибка у поля ввода
     _showInputError(inputElement) {
@@ -62,7 +66,6 @@ export default class FormValidator {
             this._toggleButtonState(inputlist, buttonElement);
         });
     };
-
 
     // Удаление ошибок
     deleteErrors() {
