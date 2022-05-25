@@ -1,6 +1,8 @@
 export default class Api {
     constructor(confing) {
-        this._headers = confing.headers
+        this._headers = confing.headers,
+            this._url = confing.url
+
     }
 
     _checkError(res) {
@@ -12,7 +14,7 @@ export default class Api {
 
     // Получение списка всех карточек
     getInitialCards() {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-41/cards', {
+        return fetch(`${this._url}/cards`, {
                 method: 'GET',
                 headers: this._headers
             })
@@ -22,7 +24,7 @@ export default class Api {
 
     // Получение информации пользователя
     getUserInfo() {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-41/users/me', {
+        return fetch(`${this._url}/users/me`, {
                 method: 'GET',
                 headers: this._headers
             })
@@ -39,7 +41,7 @@ export default class Api {
             }),
 
         }
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort-41/users/me/avatar`, newConfing)
+        return fetch(`${this._url}/users/me/avatar`, newConfing)
             .then(this._checkError);
     }
 
@@ -49,7 +51,7 @@ export default class Api {
             headers: this._headers,
             method: 'DELETE',
         }
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort-41/cards/${cardId}`, newConfing)
+        return fetch(`${this._url}/cards/${cardId}`, newConfing)
             .then(this._checkError);
     }
 
@@ -59,7 +61,7 @@ export default class Api {
             headers: this._headers,
             method: 'PUT',
         }
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort-41/cards/likes/${cardId}`, newConfing)
+        return fetch(`${this._url}/cards/likes/${cardId}`, newConfing)
             .then(this._checkError);
     }
 
@@ -69,7 +71,7 @@ export default class Api {
             headers: this._headers,
             method: 'DELETE',
         }
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort-41/cards/likes/${cardId}`, newConfing)
+        return fetch(`${this._url}/cards/likes/${cardId}`, newConfing)
             .then(this._checkError);
     }
 
@@ -83,7 +85,7 @@ export default class Api {
                 about: data['input-about']
             }),
         }
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-41/users/me', newConfing)
+        return fetch(`${this._url}/users/me`, newConfing)
             .then(this._checkError);
     }
 
@@ -98,7 +100,7 @@ export default class Api {
             }),
 
         }
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-41/cards', newConfing)
+        return fetch(`${this._url}/cards`, newConfing)
             .then(this._checkError);
     }
 }

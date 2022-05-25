@@ -1,7 +1,7 @@
 // Открытие и закрытие попапа
 export default class Popup {
     constructor(popupSelector) {
-        this._popupSelector = popupSelector
+        this._popup = document.querySelector(popupSelector);
         this.close = this.close.bind(this)
     }
 
@@ -21,7 +21,7 @@ export default class Popup {
 
     // Установка слушателя
     setEventListeners() {
-        this._popupSelector.addEventListener('click', (evt) => {
+        this._popup.addEventListener('click', (evt) => {
             if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
                 this.close();
             }
@@ -30,13 +30,13 @@ export default class Popup {
 
     // Открытие
     open() {
-        this._popupSelector.classList.add('popup_opened');
+        this._popup.classList.add('popup_opened');
         document.addEventListener('keydown', this._handleEscClose);
     }
 
     // Закрытие
     close() {
-        this._popupSelector.classList.remove('popup_opened');
+        this._popup.classList.remove('popup_opened');
         document.removeEventListener('keydown', this._handleEscClose);
     }
 }

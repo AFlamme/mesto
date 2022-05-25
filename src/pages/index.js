@@ -69,8 +69,6 @@
             const createNewCard = (element) => {
                 const newCard = new Card(cardsTemplate, { myId, ...element }, handleOpenCard,
 
-
-
                     // Удаление карточки 
                     function removeCard(cardId) {
                         popupConfirms.open()

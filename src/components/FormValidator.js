@@ -4,6 +4,7 @@ export default class FormValidator {
         this._validationConfig = validationConfig;
         this._formElement = formElement;
         this._buttonElement = this._formElement.querySelector(this._validationConfig.submitButtonSelector);
+        this._inputlist = Array.from(this._formElement.querySelectorAll(this._validationConfig.inputSelector));
     }
 
     // Проверка формы на наличие невалидных полей
@@ -55,22 +56,17 @@ export default class FormValidator {
 
     // Установка слушателя событий
     _setInputListeners() {
-        const inputlist = Array.from(this._formElement.querySelectorAll(this._validationConfig.inputSelector));
-        const buttonElement = this._formElement.querySelector(this._validationConfig.submitButtonSelector);
-
-        inputlist.forEach((inputElement) => {
+        this._inputlist.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
                 this._checkInput(inputElement);
-                this._toggleButtonState(inputlist, buttonElement);
+                this._toggleButtonState(this._inputlist, this._buttonElement);
             });
-            this._toggleButtonState(inputlist, buttonElement);
+            this._toggleButtonState(this._inputlist, this._buttonElement);
         });
     };
 
     // Удаление ошибок
     deleteErrors() {
-        const errorsSpan = this._formElement.querySelectorAll(this._validationConfig.inputSelector);
-        const errorsInput = this._formElement.querySelectorAll(this._validationConfig.inputError);
         errorsSpan.forEach((input) => {
             input.classList.remove(this._validationConfig.inputErrorClass);
         });

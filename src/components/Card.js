@@ -23,7 +23,6 @@ export default class Card {
         cardTitle.textContent = this._name;
         cardPhoto.src = this._link;
         cardPhoto.alt = this._name;
-
         cardTemp.querySelector('.card__likes-container').textContent = this._likes.length // Счетчик поставленных лайков
             // Отображение активных лайков
         this._likes.forEach(like => {
@@ -45,9 +44,9 @@ export default class Card {
 
 
     _setEventListeners() {
-        const buttonLike = this._element.querySelector('.card__like'); // Кнопка лайка. 
-        buttonLike.addEventListener('click', () => {
-            !buttonLike.classList.contains('card__like_active') ?
+        this._buttonLike = this._element.querySelector('.card__like'); // Кнопка лайка.  
+        this._buttonLike.addEventListener('click', () => {
+            !this._buttonLike.classList.contains('card__like_active') ?
                 this._putLike(this._cardId, this) :
                 this._removeLike(this._cardId, this)
         });
