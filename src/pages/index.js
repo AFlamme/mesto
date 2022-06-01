@@ -14,7 +14,6 @@
         formAddCard,
         cardsTemplate,
         cardContainer,
-        popupBig,
         popupConfirm,
         popupEditAvatar,
         saveNewAvatar,
@@ -33,7 +32,7 @@
 
     const userInfo = new UserInfo(nameProfile, aboutProfile, avatarProfile);
     const renderCards = new Section(cardContainer);
-    const popupBigClass = new PopupWithImage(popupBig, popupImg, popupImgText);
+    const popupBigClass = new PopupWithImage('#popupbig', popupImg, popupImgText);
     const popupConfirms = new PopupConfirm(popupConfirm);
     popupConfirms.setEventListeners()
     popupBigClass.setEventListeners()
@@ -68,6 +67,8 @@
             // Создание карточки
             const createNewCard = (element) => {
                 const newCard = new Card(cardsTemplate, { myId, ...element }, handleOpenCard,
+
+
 
                     // Удаление карточки 
                     function removeCard(cardId) {
@@ -113,7 +114,7 @@
                         }
                     })
 
-                    const popupEdit = new PopupWithForm(popupProfile, inputsValue => {
+                    const popupEdit = new PopupWithForm('#popupProfile', inputsValue => {
                         const submitText = popupProfile.querySelector('.popup__save-button')
                         submitText.textContent = 'Сохранение ...'
                             // Отправка на сервер и рендер
@@ -129,7 +130,7 @@
                     popupEdit.setEventListeners()
 
                     // Попапа добавления
-                    const popupAdd = new PopupWithForm(popupCard, inputsValue => {
+                    const popupAdd = new PopupWithForm('#popupCard', inputsValue => {
                         const submitText = popupCard.querySelector('.popup__save-button')
                         submitText.textContent = 'Сохранение ...'
                             // Отправка на сервер и рендер
@@ -143,7 +144,7 @@
                     })
 
                     // Новый аватар
-                    const popupTypeAvatar = new PopupWithForm(popupAvatarSelector, inputsValue => {
+                    const popupTypeAvatar = new PopupWithForm('.popup_avatar', inputsValue => {
                         const submitText = popupAvatarSelector.querySelector('.popup__save-button')
                         submitText.textContent = 'Сохранение ...'
                             // Отправка на сервер и рендер
@@ -159,7 +160,6 @@
 
                     // Открыть карточку
                     openPopupCardButton.addEventListener('click', () => {
-                        formAddCard.reset();
                         addCardFormValidator.disableSubmitButton();
                         popupAdd.open();
                     });

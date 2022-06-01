@@ -1,8 +1,7 @@
 export default class Api {
     constructor(confing) {
-        this._headers = confing.headers,
-            this._url = confing.url
-
+        this._url = confing.url
+        this._headers = confing.headers
     }
 
     _checkError(res) {
