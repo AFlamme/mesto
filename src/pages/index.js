@@ -1,23 +1,16 @@
     import './index.css';
     import {
-        nameProfile,
-        aboutProfile,
-        avatarProfile,
         validationConfig,
-        popupProfile,
         editButton,
         nameInput,
         aboutInput,
         formEditProfile,
-        popupCard,
         openPopupCardButton,
         formAddCard,
         cardsTemplate,
         cardContainer,
-        popupConfirm,
         popupEditAvatar,
         saveNewAvatar,
-        popupAvatarSelector,
         popupImg,
         popupImgText
     } from "../utils/constants.js";
@@ -30,19 +23,22 @@
     import Section from "../components/Section.js";
     import UserInfo from "../components/UserInfo.js";
 
-    const userInfo = new UserInfo(nameProfile, aboutProfile, avatarProfile);
     const renderCards = new Section(cardContainer);
-    const popupBigClass = new PopupWithImage('#popupbig', popupImg, popupImgText);
-    const popupConfirms = new PopupConfirm(popupConfirm);
-    popupConfirms.setEventListeners()
-    popupBigClass.setEventListeners()
+
+    const popupBigClass = new PopupWithImage('.popup_type_big', popupImg, popupImgText);
+    popupBigClass.setEventListeners();
+
+    const popupConfirms = new PopupConfirm('.popup_confirm');
+    popupConfirms.setEventListeners();
 
     // Валидация
     const addCardFormValidator = new FormValidator(validationConfig, formAddCard);
-    const editProfileFormValidator = new FormValidator(validationConfig, formEditProfile);
-    const avatarForm = new FormValidator(validationConfig, saveNewAvatar);
-    editProfileFormValidator.enableValidation();
     addCardFormValidator.enableValidation();
+
+    const editProfileFormValidator = new FormValidator(validationConfig, formEditProfile);
+    editProfileFormValidator.enableValidation();
+
+    const avatarForm = new FormValidator(validationConfig, saveNewAvatar);
     avatarForm.enableValidation();
 
 
@@ -52,6 +48,12 @@
             authorization: 'c4e2fce1-46f1-4f6b-98ee-6e99b6737200',
             'Content-Type': 'application/json'
         }
+    });
+
+    const userInfo = new UserInfo({
+        userNameSelector: '.profile__name',
+        userAboutSelector: '.profile__about',
+        userAvatarSelector: '.profile__avatar',
     });
 
     // Профиль пользователя
@@ -67,8 +69,6 @@
             // Создание карточки
             const createNewCard = (element) => {
                 const newCard = new Card(cardsTemplate, { myId, ...element }, handleOpenCard,
-
-
 
                     // Удаление карточки 
                     function removeCard(cardId) {
@@ -98,7 +98,6 @@
                             .catch(err => console.log(err))
                     }
 
-
                 ).getCard()
                 return newCard
             }
@@ -114,47 +113,41 @@
                         }
                     })
 
-                    const popupEdit = new PopupWithForm('#popupProfile', inputsValue => {
-                        const submitText = popupProfile.querySelector('.popup__save-button')
-                        submitText.textContent = 'Сохранение ...'
-                            // Отправка на сервер и рендер
+                    const popupEdit = new PopupWithForm('.popup_type_profile', inputsValue => {
+                        popupEdit.renderLoading(true);
                         console.log(inputsValue)
                         api.patchProfileInfo(inputsValue)
                             .then(data => {
-                                submitText.textContent = 'Сохранить'
                                 userInfo.setUserInfo(data)
                                 popupEdit.close()
                             })
                             .catch(err => console.log(err))
+                            .finally(() => popupEdit.renderLoading(false))
                     })
                     popupEdit.setEventListeners()
 
                     // Попапа добавления
-                    const popupAdd = new PopupWithForm('#popupCard', inputsValue => {
-                        const submitText = popupCard.querySelector('.popup__save-button')
-                        submitText.textContent = 'Сохранение ...'
-                            // Отправка на сервер и рендер
+                    const popupAdd = new PopupWithForm('.popup_type_card', inputsValue => {
+                        popupAdd.renderLoading(true);
                         api.patchCard(inputsValue)
                             .then((data) => {
-                                submitText.textContent = 'Сохранить'
                                 renderCards.addItem(createNewCard(data))
                                 popupAdd.close()
                             })
                             .catch(err => console.log(err))
+                            .finally(() => popupAdd.renderLoading(false))
                     })
 
                     // Новый аватар
-                    const popupTypeAvatar = new PopupWithForm('.popup_avatar', inputsValue => {
-                        const submitText = popupAvatarSelector.querySelector('.popup__save-button')
-                        submitText.textContent = 'Сохранение ...'
-                            // Отправка на сервер и рендер
+                    const popupTypeAvatar = new PopupWithForm('.popup_type_avatar', inputsValue => {
+                        popupTypeAvatar.renderLoading(true);
                         api.newAvatar(inputsValue)
                             .then((data) => {
                                 userInfo.setUserInfo(data)
-                                submitText.textContent = 'Сохранить'
                                 popupTypeAvatar.close()
                             })
                             .catch(err => console.log(err))
+                            .finally(() => popupTypeAvatar.renderLoading(false))
                     })
                     popupTypeAvatar.setEventListeners()
 
