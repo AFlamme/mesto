@@ -97,11 +97,13 @@
 
     <!-- Подтвердить удаление -->
     <div class="popup popup_confirm">
-        <form id="form_remove" class="popup__container" method="post" novalidate>
-            <h2 class="popup__title">Вы уверены?</h2>
-            <button type="submit" class="popup__save-button">Да</button>
-        </form>
-        <button type="button" class="popup__close-button" id="closeRemove"></button>
+        <div class="popup__container">
+            <form id="form_remove" class="popup__container" method="post" novalidate>
+                <h2 class="popup__title">Вы уверены?</h2>
+                <button type="submit" class="popup__save-button">Да</button>
+            </form>
+            <button type="button" class="popup__close-button" id="closeRemove"></button>
+        </div>
     </div>
 
     <!-- Обновление аватара -->

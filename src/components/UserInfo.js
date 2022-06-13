@@ -1,4 +1,4 @@
-// Хранение, доступ и вывод инормации о пользователе
+// Хранение, доступ и вывод информации о пользователе
 export default class UserInfo {
     constructor({ userNameSelector, userAboutSelector, userAvatarSelector }) {
         this._userNameElement = document.querySelector(userNameSelector);
@@ -19,6 +19,6 @@ export default class UserInfo {
     setUserInfo(item) {
         this._userNameElement.textContent = item.name;
         this._userAboutElement.textContent = item.about;
-        this._userAvatarElement.src = item.avatar;
+        this._userAvatarElement.style.backgroundImage = `url(${item.avatar})`;
     }
 }
