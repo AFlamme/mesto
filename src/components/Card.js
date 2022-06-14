@@ -1,22 +1,21 @@
 // Создание и функционирование карточки
 export default class Card {
     constructor(cardsTemplate, { myId, name, link, likes, owner, _id }, handleCardClick,
-        removeCard, putLike, removeLike) {
-        this._cardTemplate = cardsTemplate;
-        this._myId = myId;
-        this._name = name;
-        this._link = link;
-        this._likes = likes;
-        this._ownerCardId = owner._id;
-        this._cardId = _id;
-        this._handleCardClick = handleCardClick;
-        this._removeCard = removeCard;
-        this._putLike = putLike;
-        this._removeLike = removeLike;
+            removeCard, putLike, removeLike) {
+            this._cardTemplate = cardsTemplate;
+            this._myId = myId;
+            this._name = name;
+            this._link = link;
+            this._likes = likes;
+            this._ownerCardId = owner._id;
+            this._cardId = _id;
+            this._handleCardClick = handleCardClick;
+            this._removeCard = removeCard;
+            this._putLike = putLike;
+            this._removeLike = removeLike;
 
-    }
-
-    // Добавление карточки
+        }
+        // Добавление карточки
     _createCard() {
         const cardTemp = this._cardTemplate.querySelector('.card').cloneNode(true);
         const cardTitle = cardTemp.querySelector('.card__title');
