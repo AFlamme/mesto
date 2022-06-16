@@ -43,9 +43,9 @@
 
 
     const api = new Api({
-        url: `https://mesto.nomoreparties.co/v1/cohort-41/`,
+        url: `https://mesto.nomoreparties.co/v1/cohort-43/`,
         headers: {
-            authorization: 'c4e2fce1-46f1-4f6b-98ee-6e99b6737200',
+            authorization: '292cceda-e820-4d58-9be5-30225e20d80b',
             'Content-Type': 'application/json'
         }
     });
@@ -56,46 +56,61 @@
         userAvatarSelector: '.profile__avatar',
     });
 
-    function handleOpenCard(title, link) {
-        popupZoomImage.open(title, link);
-    }
+    let myId = ""
+        // Получение карточки с сервера и рендер
+    api.getInitialCards()
+        .then((data) => {
+            cardList.renderItems({
+                items: data,
+                renderer: (element) => {
+                    const newCard = createNewCard(element)
+                    cardList.addItem(newCard)
+                }
+            })
+        })
 
-    const myId = _id;
-    userInfo.setUserInfo({ name, about, avatar })
+    // Профиль пользователя
+    api.getUserInfo()
+        .then((name, about, avatar, _id) => {
+            myId = _id;
+            userInfo.setUserInfo({ name, about, avatar })
+        })
 
     // Создание карточки
     function createNewCard(element) {
-        const newCard = new Card(cardsTemplate, { myId, ...element }, handleOpenCard, putLike, removeCard, removeLike)
-        const cardElement = newCard.createNewCard();
-        return cardElement
-    }
+        const newCard = new Card(cardsTemplate, { myId, ...element },
+            (title, link) => {
+                popupZoomImage.open(title, link)
+            },
 
-    function putLike(cardId, card) {
-        api.putLike(cardId)
-            .then((res) => {
-                card.setLikesInfo(res.likes.length)
-            })
-            .catch(err => console.log(err))
-    }
+            (cardId, card) => {
+                api.putLike(cardId)
+                    .then((res) => {
+                        card.setLikesInfo(res.likes.length)
+                    })
+                    .catch(err => console.log(err))
+            },
 
-    function removeCard(cardId) {
-        popupConfirms.open()
-        popupConfirms.setSubmitAction(() => {
-            api.removeCard(cardId)
-                .then(() => popupConfirms.close())
-                .then(() => newCard.remove())
-                .catch(err => console.log(err))
-        })
-    }
+            (cardId) => {
+                popupConfirms.open()
+                popupConfirms.setSubmitAction(() => {
+                    api.removeCard(cardId)
+                        .then(() => popupConfirms.close())
+                        .then(() => newCard.remove())
+                        .catch(err => console.log(err))
+                })
+            },
 
-    function removeLike(cardId, card) {
-        api.removeLike(cardId)
-            .then((res) => {
-                card.setLikesInfo(res.likes.length)
-            })
-            .catch(err => console.log(err))
+            (cardId, card) => {
+                api.removeLike(cardId)
+                    .then((res) => {
+                        card.setLikesInfo(res.likes.length)
+                    })
+                    .catch(err => console.log(err))
+            }
+        ).getCard()
+        return newCard
     }
-
 
     const popupEdit = new PopupWithForm('.popup_type_profile', inputsValue => {
         popupEdit.renderLoading(true);
@@ -111,15 +126,15 @@
     popupEdit.setEventListeners()
 
     // Попапа добавления
-    const popupAdd = new PopupWithForm('.popup_type_card', inputsValue => {
-        popupAdd.renderLoading(true);
+    const popupAddCard = new PopupWithForm('.popup_type_card', inputsValue => {
+        popupAddCard.renderLoading(true);
         api.patchCard(inputsValue)
             .then((data) => {
                 cardList.addItem(createNewCard(data))
-                popupAdd.close()
+                popupAddCard.close()
             })
             .catch(err => console.log(err))
-            .finally(() => popupAdd.renderLoading(false))
+            .finally(() => popupAddCard.renderLoading(false))
     })
 
     // Новый аватар
@@ -138,9 +153,9 @@
     // Открыть карточку
     openPopupCardButton.addEventListener('click', () => {
         addCardFormValidator.disableSubmitButton();
-        popupAdd.open();
+        popupAddCard.open();
     });
-    popupAdd.setEventListeners();
+    popupAddCard.setEventListeners();
 
     // Открыть профиль
     editButton.addEventListener('click', () => {
@@ -155,20 +170,3 @@
         popupTypeAvatar.open();
         avatarForm.disableSubmitButton();
     })
-
-    // Получение карточки с сервера и рендер
-    api.getInitialCards()
-        .then((data) => {
-            cardList.renderItems({
-                items: data,
-                renderer: (element) => {
-                    const newCard = createNewCard(element)
-                    cardList.addItem(newCard)
-                }
-            })
-            return newCard
-        })
-
-    // Профиль пользователя
-    api.getUserInfo()
-        .then((userName, about, avatar, _id) => {})

@@ -16,7 +16,7 @@ export default class Card {
 
         }
         // Добавление карточки
-    _createCard() {
+    createNewCard() {
         const cardTemp = this._cardTemplate.querySelector('.card').cloneNode(true);
         const cardTitle = cardTemp.querySelector('.card__title');
         const cardPhoto = cardTemp.querySelector('.card__photo');
@@ -65,7 +65,7 @@ export default class Card {
     }
 
     getCard() {
-        this._element = this._createCard();
+        this._element = this.createNewCard();
         this._setEventListeners();
         return this._element
     }
