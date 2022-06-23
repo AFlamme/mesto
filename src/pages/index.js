@@ -72,7 +72,7 @@
     // Профиль пользователя
     api.getUserInfo()
         .then((name, about, avatar, _id) => {
-            myId = _id;
+            myId = _id
             userInfo.setUserInfo({ name, about, avatar })
         })
 
@@ -83,13 +83,16 @@
                 popupZoomImage.open(title, link)
             },
 
-            (cardId, card) => {
-                api.removeLike(cardId)
-                    .then((res) => {
-                        card.setLikesInfo(res.likes.length)
-                    })
-                    .catch((err) => console.log(err))
+            (cardId) => {
+                popupConfirms.open()
+                popupConfirms.setSubmitAction(() => {
+                    api.removeCard(cardId)
+                        .then(() => popupConfirms.close())
+                        .then(() => newCard.remove())
+                        .catch((err) => console.log(err))
+                })
             },
+
 
             (cardId, card) => {
                 api.putLike(cardId)
@@ -99,14 +102,12 @@
                     .catch((err) => console.log(err))
             },
 
-            (cardId) => {
-                popupConfirms.open()
-                popupConfirms.setSubmitAction(() => {
-                    api.removeCard(cardId)
-                        .then(() => popupConfirms.close())
-                        .then(() => newCard.remove())
-                        .catch((err) => console.log(err))
-                })
+            (cardId, card) => {
+                api.removeLike(cardId)
+                    .then((res) => {
+                        card.setLikesInfo(res.likes.length)
+                    })
+                    .catch((err) => console.log(err))
             }
         ).getCard()
         return newCard
