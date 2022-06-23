@@ -1,12 +1,13 @@
 // Создание и функционирование карточки
 export default class Card {
-    constructor(cardsTemplate, { myId, name, link, likes, owner, _id }, handleCardClick,
+    constructor(cardsTemplate, { myId, name, link, likes, owner, _id, userId }, handleCardClick,
             removeCard, putLike, removeLike) {
             this._cardTemplate = cardsTemplate;
             this._myId = myId;
             this._name = name;
             this._link = link;
             this._likes = likes;
+            this._userId = userId;
             this._ownerCardId = owner._id;
             this._cardId = _id;
             this._handleCardClick = handleCardClick;
@@ -62,6 +63,33 @@ export default class Card {
         remove.addEventListener('click', () => {
             this._removeCard(this._cardId);
         });
+    }
+
+    deleteCard() {
+        this._cardElement.remove();
+        this._cardElement = null;
+    }
+
+
+    _fillLike() {
+        this._buttonLike.classList.add('card__like_active')
+    }
+
+    _unfillLike() {
+        this._buttonLike.classList.remove('card__like_active')
+    }
+
+    setLikes(newLikes) {
+        this._likes = newLikes;
+
+        const likesCount = this._cardElement.querySelector('.card__likes-container')
+        likesCount.textContent = this._likes.length
+
+        if (this.isLiked()) {
+            this._fillLike()
+        } else {
+            this._unfillLike()
+        }
     }
 
     getCard() {

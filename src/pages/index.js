@@ -84,11 +84,19 @@
             },
 
             (cardId, card) => {
+                api.removeLike(cardId)
+                    .then((res) => {
+                        card.setLikesInfo(res.likes.length)
+                    })
+                    .catch((err) => console.log(err))
+            },
+
+            (cardId, card) => {
                 api.putLike(cardId)
                     .then((res) => {
                         card.setLikesInfo(res.likes.length)
                     })
-                    .catch(err => console.log(err))
+                    .catch((err) => console.log(err))
             },
 
             (cardId) => {
@@ -97,33 +105,25 @@
                     api.removeCard(cardId)
                         .then(() => popupConfirms.close())
                         .then(() => newCard.remove())
-                        .catch(err => console.log(err))
+                        .catch((err) => console.log(err))
                 })
-            },
-
-            (cardId, card) => {
-                api.removeLike(cardId)
-                    .then((res) => {
-                        card.setLikesInfo(res.likes.length)
-                    })
-                    .catch(err => console.log(err))
             }
         ).getCard()
         return newCard
     }
 
-    const popupEdit = new PopupWithForm('.popup_type_profile', inputsValue => {
-        popupEdit.renderLoading(true);
+    const popupEditProfile = new PopupWithForm('.popup_type_profile', inputsValue => {
+        popupEditProfile.renderLoading(true);
         console.log(inputsValue)
         api.patchProfileInfo(inputsValue)
             .then(data => {
                 userInfo.setUserInfo(data)
-                popupEdit.close()
+                popupEditProfile.close()
             })
             .catch(err => console.log(err))
-            .finally(() => popupEdit.renderLoading(false))
+            .finally(() => popupEditProfile.renderLoading(false))
     })
-    popupEdit.setEventListeners()
+    popupEditProfile.setEventListeners()
 
     // Попапа добавления
     const popupAddCard = new PopupWithForm('.popup_type_card', inputsValue => {
@@ -162,7 +162,7 @@
         const userInformation = userInfo.getUserInfo();
         nameInput.value = userInformation.userName;
         aboutInput.value = userInformation.userAbout;
-        popupEdit.open();
+        popupEditProfile.open();
     });
 
     // Открыть аватар
