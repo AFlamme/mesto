@@ -71,7 +71,7 @@
 
     // Профиль пользователя
     api.getUserInfo()
-        .then((name, about, avatar, _id) => {
+        .then(({ name, about, avatar, _id }) => {
             myId = _id
             userInfo.setUserInfo({ name, about, avatar })
         })

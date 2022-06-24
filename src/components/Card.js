@@ -33,11 +33,9 @@ export default class Card {
                 }
             })
             // Корзина
-        if (this._myId !== this._ownerCardId) {
+        if (this._myId === this._ownerCardId) {
             cardTemp.querySelector('.card__delete').classList.add('card__delete_from-me')
         }
-        console.log(this._myId);
-        console.log(this._ownerCardId)
         return cardTemp;
     }
 
