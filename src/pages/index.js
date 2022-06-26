@@ -57,7 +57,20 @@
     });
 
     let myId = ""
-        // Получение карточки с сервера и рендер
+
+    Promise.all([api.getInitialCards(), api.getUserInfo()])
+        .then((values) => {
+            const cards = values[0];
+            const info = values[1];
+            console.log(cards)
+            console.log(info)
+            userInfo.setUserInfo(info)
+            userId = info._id;
+            cardList.renderItems(cards)
+        })
+        .catch((err) => console.log(err));
+
+    // Получение карточки с сервера и рендер
     api.getInitialCards()
         .then((data) => {
             cardList.renderItems({
